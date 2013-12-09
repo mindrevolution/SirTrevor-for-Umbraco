@@ -14,14 +14,15 @@ angular.module("umbraco").controller("Sir.Trevor.Controller", function ($scope, 
 				"Quote",
 				"UmbracoMedia",
 				"Video",
-				"Tweet"
-			],
-			foo: "bar"
+				"Tweet",
+                "Image"
+			]
 		    });
 
 			$scope.$on("formSubmitting", function (e, args) {
 				editor.onFormSubmit();
 				$scope.model.value = editor.dataStore;
+				console.log("editor.dataStore", editor.dataStore);
 			});
 	});
 

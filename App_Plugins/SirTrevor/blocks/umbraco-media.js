@@ -2,7 +2,9 @@
   Umbraco Media Image Block by mindrevolution
 */
 
-SirTrevor.Blocks.UmbracoMedia = (function(){
+SirTrevor.Blocks.UmbracoMedia = (function () {
+
+    var thisblock;
 
     return SirTrevor.Block.extend({
 
@@ -18,28 +20,27 @@ SirTrevor.Blocks.UmbracoMedia = (function(){
 
         loadData: function(data) {
             // - write image tag
-            this.$editor.html($("<img>", { src: data.file.url }))
-        },
-
-        editorHTML: function () {
-            // - show media library and allow selection of an image/media (for now)
-            angular.element("body").injector().get("dialogService").mediaPicker({ callback: this.onMediaSelected });
+            this.$editor.html($('<img>', { src: data.value }));
         },
 
         onBlockRender: function () {
+            // - preserve current scope for callback 'onMediaSelected'
+            thisblock = this;
+            // - show media library and allow selection of an image/media (for now)
+            angular.element("body").injector().get("dialogService").mediaPicker({ callback: this.onMediaSelected });
+
+            console.log("onBlockRender");
         },
 
         onMediaSelected: function (e) {
-            var mediafile;
-
             angular.forEach(e.properties, function (data, key) {
                 if (data.alias == "umbracoFile") {
-                    mediafile = data.value;
-                    console.log("selected media", mediafile)
+                    //console.log("selected media", mediafile)
+                    thisblock.$editor.html($("<img>", { src: data.value }));
+                    thisblock.setAndLoadData(data);
+                    thisblock.ready();
                 }
             });
-            // need to glue this together, without a proper "this" ;)
-            //$editor.html($("<img>", { src: mediafile }))
         }
 
     });
