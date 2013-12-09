@@ -1,20 +1,19 @@
 angular.module("umbraco").controller("Sir.Trevor.Controller", function ($scope, dialogService, assetsService) {
-	
+
 	assetsService.load(
 			["/App_Plugins/SirTrevor/lib/eventable.js",
 			"/App_Plugins/SirTrevor/lib/sir-trevor.min.js",
-			"/App_Plugins/SirTrevor/blocks/umbraco-image.js"])
+			"/App_Plugins/SirTrevor/blocks/umbraco-image.js",
+			"/App_Plugins/SirTrevor/blocks/umbraco-thirdpartymedia.js"])
 		.then(function () {
 			var editor = new SirTrevor.Editor({
 			el: $(".sir-trevor"),
 			blockTypes: [
-				"Embedly",
 				"Text",
 				"List",
 				"Quote",
 				"UmbracoImage",
-				"Video",
-				"Tweet"
+				"UmbracoThirdPartyMedia"
 			]
 		    });
 
