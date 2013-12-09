@@ -1,0 +1,45 @@
+﻿.st-block__inner ::-moz-selection {
+    background: #f57020;
+}
+.st-block__inner ::selection {
+    background: #f57020;
+}
+.st-block-controls__top:hover:before {
+    color: #f57020;
+}
+.st-block-control:hover {
+    color: #f57020;
+}
+.st-block--with-plus:after {
+    color: #f57020;
+}
+.st-block__upload-container:hover .st-upload-btn {
+    background: #f57020;
+}
+.st-block__messages {
+    border: 2px solid #f57020;
+}
+.st-block-positioner {
+    border: 0.125em solid #f57020;
+}
+    .st-block-positioner:after {
+        border: 0.125em solid #f57020;
+    }
+.st-block-positioner__title {
+    color: #f57020;
+    border-bottom: 1px solid #f57020;
+}
+.st-block-ui-btn {
+    color: #f57020;
+    border: 2px solid #f57020;
+}
+.st-block-ui-btn:hover {
+    background: #f57020;
+}
+.st-format-btn:hover,
+.st-format-btn--is-active {
+    color: #f57020;
+}
+.st-block__inner:hover {
+    border-color: #f57020;
+}
