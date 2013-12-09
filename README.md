@@ -1,7 +1,7 @@
 SirTrevor for Umbraco 7+
 ============================
 
-# WIP - not ready for production yet!
+# WIP - not polished, but functional for single images from the Umbraco media library.
 
 ##Licence
 Licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html), which allows open source as well as commercial use.
