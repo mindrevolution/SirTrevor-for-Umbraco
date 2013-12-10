@@ -1,7 +1,5 @@
-# SirTrevor for Umbraco 7+
----
-
-**A SirTrevor editor plugin for Umbraco 7+ that integrates.**
+# SirTrevor for Umbraco 7
+**A SirTrevor editor plugin for Umbraco 7 that integrates.**
 
 
 ![Sir Trevor for Umbraco in action](README.md.res/sirtrevor-for-umbraco-in-action.gif.gif)
@@ -15,7 +13,7 @@ Based on [Sir Trevor](http://madebymany.github.io/sir-trevor-js/). From [mindrev
 This Umbraco plugin package is for Umbraco 7 and the new "Belle UI".
 
 ### Umbraco package installation
-Install the [package](http://our.umbraco.org/projects/) from the Umbraco package repository.
+Install the [package](http://our.umbraco.org/projects/backoffice-extensions/sir-trevor) from the Umbraco package repository.
 
 ### Manual installation
 Add [/src/App_Plugins/SirTrevor](https://github.com/mindrevolution/SirTrevor-for-Umbraco/tree/master/App_Plugins/SirTrevor) to your Umbraco 7 website.
@@ -30,6 +28,19 @@ Full documentation for Sir Trevor can be found [here](http://madebymany.github.i
 
 ## Updating the Sir Trevor library
 In case you want to upgrade your installation to a later Sir Trevor build than this package supports out of the box, the library is located in [App_Plugins/SirTrevor/lib/](https://github.com/mindrevolution/SirTrevor-for-Umbraco/tree/master/App_Plugins/SirTrevor/lib) and can be upgraded easily, no modifications necessary.
+
+
+
+## Screenshots
+
+![Screenshot 1](README.md.res/tour01.png)
+
+![Screenshot 2](README.md.res/tour02.png)
+
+![Screenshot 3](README.md.res/tour03.png)
+
+![Screenshot 4](README.md.res/tour04.png)
+
 
 
 ## Licence
