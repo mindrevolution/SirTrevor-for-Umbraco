@@ -1,4 +1,18 @@
-﻿.st-block__inner ::-moz-selection {
+﻿/* limits the size to the thumbnail max. better for drag and drop sort */
+/* feel free to change, if needed */
+.ust-previewimg {
+    display:block;
+    max-width:100% !important;
+    width:auto !important;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+
+
+
+/* COLOR OVERRIDE */
+.st-block__inner ::-moz-selection {
     background: #f57020;
 }
 .st-block__inner ::selection {

@@ -8,13 +8,12 @@ angular.module("umbraco").controller("Sir.Trevor.Controller", function ($scope, 
 			var editor = new SirTrevor.Editor({
 			el: $(".sir-trevor"),
 			blockTypes: [
-				"Embedly",
 				"Text",
 				"List",
 				"Quote",
 				"UmbracoImage",
-				"Video",
-				"Tweet"
+                "Video",
+                "UmbracoEmbedded"
 			]
 		    });
 
@@ -27,5 +26,5 @@ angular.module("umbraco").controller("Sir.Trevor.Controller", function ($scope, 
 
 	assetsService.loadCss("/app_plugins/SirTrevor/lib/sir-trevor.css");
 	assetsService.loadCss("/app_plugins/SirTrevor/lib/sir-trevor-icons.css");
-	assetsService.loadCss("/app_plugins/SirTrevor/umbraco-color-overrides.css");
+	assetsService.loadCss("/app_plugins/SirTrevor/umbraco-backend.css");
 });
