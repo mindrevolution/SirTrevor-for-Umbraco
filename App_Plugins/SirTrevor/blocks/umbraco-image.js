@@ -5,9 +5,10 @@
 SirTrevor.Blocks.UmbracoImage = (function () {
 
     // - umbraco ng references
-    var uImageHelper = angular.element("body").injector().get("imageHelper");
-    var uDialogService = angular.element("body").injector().get("dialogService");
-    var uMediaResource = angular.element("body").injector().get("mediaResource");
+    var ngi = angular.element("body").injector();
+    var uImageHelper = ngi.get("imageHelper");
+    var uDialogService = ngi.get("dialogService");
+    var uMediaResource = ngi.get("mediaResource");
 
     var block;
 
@@ -35,7 +36,7 @@ SirTrevor.Blocks.UmbracoImage = (function () {
                 block = this;
 
                 // - show media library and allow selection of an image/media (for now)
-                uDialogService.mediaPicker({ callback: this.onMediaSelected });
+                uDialogService.mediaPicker({ onlyImages: true, callback: this.onMediaSelected });
             }
         },
 

@@ -12,8 +12,7 @@ angular.module("umbraco").controller("Sir.Trevor.Controller", function ($scope, 
 				"List",
 				"Quote",
 				"UmbracoImage",
-                "Video",
-                "UmbracoEmbedded"
+                "Video"
 			]
 		    });
 
