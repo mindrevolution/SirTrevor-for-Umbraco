@@ -1,7 +1,10 @@
-SirTrevor for Umbraco 7+
-============================
+# SirTrevor for Umbraco 7+
+---
 
-![Sir Trevor for Umbraco in action](https://raw.github.com/madebymany/sir-trevor-js/master/examples/sir-trevor.gif)
+**A SirTrevor editor plugin for Umbraco 7+ that integrates.**
+
+
+![Sir Trevor for Umbraco in action](README.md.res/sirtrevor-for-umbraco-in-action.gif.gif)
 
 Based on [Sir Trevor](http://madebymany.github.io/sir-trevor-js/). From [mindrevolution](http://www.mindrevolution.com) for [Umbraco](http://www.umbraco.org) with love. Maintained by [Marc Stöcker](https://twitter.com/esn303).
 
@@ -39,5 +42,3 @@ Sir Trevor as well as Sir Trevor for Umbraco is released under the MIT license:
 ## Contributing
 
 This project is open for collaboration. **Fork. Push. Innovate.**
-
-
