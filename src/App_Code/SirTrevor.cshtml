@@ -1,0 +1,8 @@
+﻿@using MarkdownDeep:
+
+@helper Markdown(string markdown) {
+    // Transform the supplied text (Markdown) into HTML.
+    var markdownTransformer = new Markdown();
+    string html = Umbraco.Web.Templates.TemplateUtilities.ParseInternalLinks(markdownTransformer.Transform(markdown));
+    @(new HtmlString(html))
+}
