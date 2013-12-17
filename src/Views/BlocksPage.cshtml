@@ -1,0 +1,28 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = null;
+}
+
+<h1>Sir Trevor Sample Template</h1>
+	
+@{
+	foreach(dynamic block in CurrentPage.contentBlocks.data)
+	{
+		<h3>@block.type</h3>
+		<textarea cols="80" rows="10">@block.data</textarea>
+    
+        switch((string)block.type)
+        {
+            case "umbraco_image":
+                dynamic image = new umbraco.MacroEngines.DynamicMedia(block.data.id);
+                <img src="@image.url" alt="@image.name" style="width:50%;" />
+                break;
+                
+            case "text":
+                string text = block.data.text;
+                @SirTrevor.Markdown(text)
+                break;
+        }
+		
+	}
+}
