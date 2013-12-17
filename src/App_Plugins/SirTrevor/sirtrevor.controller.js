@@ -3,6 +3,7 @@ angular.module("umbraco").controller("Sir.Trevor.Controller", function ($scope, 
 	assetsService.load(
 			["/App_Plugins/SirTrevor/lib/eventable.js",
 			"/App_Plugins/SirTrevor/lib/sir-trevor.min.js",
+            "/App_Plugins/SirTrevor/formatters/umbraco.js",
 			"/App_Plugins/SirTrevor/blocks/umbraco-image.js"])
 		.then(function () {
 			var editor = new SirTrevor.Editor({
