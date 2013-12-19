@@ -24,7 +24,10 @@ This Umbraco plugin package is for Umbraco 7 and the new "Belle UI".
 Install the [package](http://our.umbraco.org/projects/backoffice-extensions/sir-trevor) from the Umbraco package repository.
 
 ### Manual installation
-Add [/src/App_Plugins/SirTrevor](https://github.com/mindrevolution/SirTrevor-for-Umbraco/tree/master/App_Plugins/SirTrevor) to your Umbraco 7 website.
+These steps are required for manual installation:
+- add [/App_Plugins/SirTrevor/](https://github.com/mindrevolution/SirTrevor-for-Umbraco/tree/master/src/App_Plugins/SirTrevor) to your website
+- also copy over [/App_Code/SirTrevor.cshtml](https://github.com/mindrevolution/SirTrevor-for-Umbraco/blob/master/src/App_Code/SirTrevor.cshtml)
+- *optionally* copy the [sample template/view](https://github.com/mindrevolution/SirTrevor-for-Umbraco/blob/master/src/Views/BlocksPage.cshtml) as well
 
 ### Customize the image block size
 By default a size reduced thumbnail of the image is inserted into the editor. This makes drag and drop for the blocks much easier on many screens, especially wide, hi-res ones. You can remove this limit by tweaking [umbraco-backend.css](https://github.com/mindrevolution/SirTrevor-for-Umbraco/blob/master/App_Plugins/SirTrevor/umbraco-backend.css).
