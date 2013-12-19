@@ -1,8 +1,8 @@
-# SirTrevor for Umbraco 7
+# SirTrevor for Umbraco
 **A SirTrevor editor plugin for Umbraco 7 that integrates.**
 
 
-![Sir Trevor for Umbraco in action](README.md.res/sirtrevor-for-umbraco-in-action.gif.gif)
+![Sir Trevor for Umbraco in action](README.md.res/sirtrevor-for-umbraco-in-action.gif)
 
 Based on [Sir Trevor](http://madebymany.github.io/sir-trevor-js/). From [mindrevolution](http://www.mindrevolution.com) for [Umbraco](http://www.umbraco.org) with love. Maintained by [Marc Stöcker](https://twitter.com/esn303).
 
@@ -11,6 +11,14 @@ Based on [Sir Trevor](http://madebymany.github.io/sir-trevor-js/). From [mindrev
 ## Quick start
 
 This Umbraco plugin package is for Umbraco 7 and the new "Belle UI".
+
+**Features**
+- integrates with the Umbraco media library
+- integrates with the Umbraco link picker (for external and internal links)
+- local links are saved following Umbraco's localLink concept
+- [Razor helper](https://github.com/mindrevolution/SirTrevor-for-Umbraco/blob/master/src/App_Code/SirTrevor.cshtml) included to render the markdown (utilizes [MarkdownDeep](https://github.com/toptensoftware/markdowndeep))
+- [sample template/view](https://github.com/mindrevolution/SirTrevor-for-Umbraco/blob/master/src/Views/BlocksPage.cshtml) included, showing how to render the Sir Trevor JSON on the frontend
+
 
 ### Umbraco package installation
 Install the [package](http://our.umbraco.org/projects/backoffice-extensions/sir-trevor) from the Umbraco package repository.
@@ -23,6 +31,7 @@ By default a size reduced thumbnail of the image is inserted into the editor. Th
 
 ### Extend Sir Trevor
 Full documentation for Sir Trevor can be found [here](http://madebymany.github.io/sir-trevor-js/docs.html).
+
 
 
 
@@ -40,6 +49,13 @@ In case you want to upgrade your installation to a later Sir Trevor build than t
 ![Screenshot 3](README.md.res/tour03.png)
 
 ![Screenshot 4](README.md.res/tour04.png)
+
+![Screenshot 4](README.md.res/tour06.png)
+
+![Screenshot 4](README.md.res/tour07.png)
+
+![Screenshot 4](README.md.res/tour08.png)
+
 
 
 
