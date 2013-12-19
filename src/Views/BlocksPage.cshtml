@@ -3,19 +3,25 @@
     Layout = null;
 }
 
-<h1>Sir Trevor Sample Template</h1>
+<html>
+    <head>
+        <title>Sir Trevor for Umbraco</title>
+    </head>
+    <body>
+        <h1>Sir Trevor Sample Template</h1>
+        <h3>You can also use partials for the blocks</h3>
 	
 @{
 	foreach(dynamic block in CurrentPage.contentBlocks.data)
 	{
 		<h3>@block.type</h3>
-		<textarea cols="80" rows="10">@block.data</textarea>
+		<textarea cols="120" rows="8">@block.data</textarea><br />
     
         switch((string)block.type)
         {
             case "umbraco_image":
                 dynamic image = new umbraco.MacroEngines.DynamicMedia(block.data.id);
-                <img src="@image.url" alt="@image.name" style="width:50%;" />
+                <img src="@image.url" alt="@image.name" style="max-width:50%;" />
                 break;
                 
             case "text":
@@ -26,3 +32,5 @@
 		
 	}
 }
+    </body>
+</html>
