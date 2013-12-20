@@ -1,5 +1,8 @@
 ﻿<h1><span style="border-bottom:2px solid silver;"">Getting started with Sir Trevor for Umbraco</span></h1>
 
+<h2 style="margin-top:50px;">Reload your Umbraco backend</h2>
+<p>Right *after* reading these tips, refresh the Umbraco backend, possibly by Shift-Reload.</p>
+
 <h2 style="margin-top:50px;">Add The Datatype to a Document Type</h2>
 <p>Add the Datatype "Sir Trevor Editor" to your desired document type:</p>
 <p><img src="/App_Plugins/SirTrevor/GettingStarted.res/AddDatatype.png" style="max-width:75%;border:2px solid silver;" /></p>
