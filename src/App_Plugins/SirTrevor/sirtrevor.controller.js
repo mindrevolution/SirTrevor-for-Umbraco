@@ -9,6 +9,7 @@ angular.module("umbraco").controller("Sir.Trevor.Controller", function ($scope, 
 			var editor = new SirTrevor.Editor({
 			el: $(".sir-trevor"),
 			blockTypes: [
+                "Heading",
 				"Text",
 				"List",
 				"Quote",
