@@ -11,6 +11,6 @@
 		}
 	],
 	javascript: [
-	    '~/App_Plugins/SirTrevor/SirTrevor.controller.js'
+	    "~/App_Plugins/SirTrevor/SirTrevor.controller.js"
 	]
 }
