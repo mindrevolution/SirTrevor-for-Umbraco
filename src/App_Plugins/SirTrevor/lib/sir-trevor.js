@@ -1,10 +1,10 @@
 /*!
- * Sir Trevor JS v0.3.1
+ * Sir Trevor JS v0.3.2
  *
  * Released under the MIT license
  * www.opensource.org/licenses/MIT
  *
- * 2013-12-04
+ * 2013-12-21
  */
 
 (function ($, _){
@@ -363,8 +363,8 @@
             editor.errors.push({ text: i18n.t("errors:load_fail") });
             editor.renderErrors();
   
-            console.log('Sorry there has been a problem with parsing the JSON');
-            console.log(e);
+            SirTrevor.log('Sorry there has been a problem with parsing the JSON');
+            SirTrevor.log(e);
           }
         }
       break;
@@ -405,18 +405,19 @@
     This will be triggered *by anything* so it needs to subscribe to events.
   */
   
-  var Submittable = function(){
+  SirTrevor.Submittable = function($form){
+    this.$form = $form;
     this.intialize();
   };
   
-  _.extend(Submittable.prototype, {
+  _.extend(SirTrevor.Submittable.prototype, {
   
     intialize: function(){
-      this.submitBtn = $("input[type='submit']");
+      this.$submitBtn = this.$form.find("input[type='submit']");
   
       var btnTitles = [];
   
-      _.each(this.submitBtn, function(btn){
+      _.each(this.$submitBtn, function(btn){
         btnTitles.push($(btn).attr('value'));
       });
   
@@ -427,11 +428,11 @@
     },
   
     setSubmitButton: function(e, message) {
-      this.submitBtn.attr('value', message);
+      this.$submitBtn.attr('value', message);
     },
   
     resetSubmitButton: function(){
-      _.each(this.submitBtn, function(item, index){
+      _.each(this.$submitBtn, function(item, index){
         $(item).attr('value', this.submitBtnTitles[index]);
       }, this);
     },
@@ -462,14 +463,14 @@
   
     _disableSubmitButton: function(message){
       this.setSubmitButton(null, message || i18n.t("general:wait"));
-      this.submitBtn
+      this.$submitBtn
         .attr('disabled', 'disabled')
         .addClass('disabled');
     },
   
     _enableSubmitButton: function(){
       this.resetSubmitButton();
-      this.submitBtn
+      this.$submitBtn
         .removeAttr('disabled')
         .removeClass('disabled');
     },
@@ -491,18 +492,12 @@
     }
   
   });
-  
-  SirTrevor.submittable = function(){
-    new Submittable();
-  };
   /*
   *   Sir Trevor Uploader
   *   Generic Upload implementation that can be extended for blocks
   */
   
   SirTrevor.fileUploader = function(block, file, success, error) {
-  
-    SirTrevor.EventBus.trigger("onUploadStart");
   
     var uid  = [block.blockID, (new Date()).getTime(), 'raw'].join('-');
     var data = new FormData();
@@ -515,7 +510,6 @@
   
     var callbackSuccess = function(data){
       SirTrevor.log('Upload callback called');
-      SirTrevor.EventBus.trigger("onUploadStop");
   
       if (!_.isUndefined(success) && _.isFunction(success)) {
         _.bind(success, block)(data);
@@ -524,7 +518,6 @@
   
     var callbackError = function(jqXHR, status, errorThrown){
       SirTrevor.log('Upload callback error called');
-      SirTrevor.EventBus.trigger("onUploadStop");
   
       if (!_.isUndefined(error) && _.isFunction(error)) {
         _.bind(error, block)(status);
@@ -537,6 +530,7 @@
       cache: false,
       contentType: false,
       processData: false,
+      dataType: 'json',
       type: 'POST'
     });
   
@@ -800,11 +794,15 @@
   
     addQueuedItem: function(name, deffered) {
       SirTrevor.log("Adding queued item for " + this.blockID + " called " + name);
+      SirTrevor.EventBus.trigger("onUploadStart");
+  
       this._queued.push({ name: name, deffered: deffered });
     },
   
     removeQueuedItem: function(name) {
       SirTrevor.log("Removing queued item for " + this.blockID + " called " + name);
+      SirTrevor.EventBus.trigger("onUploadStop");
+  
       this._queued = _.reject(this._queued, function(queued){ return queued.name == name; });
     },
   
@@ -819,6 +817,36 @@
       }, this);
     }
   
+  };
+  SirTrevor.BlockMixins.Controllable = {
+  
+    mixinName: "Controllable",
+  
+    initializeControllable: function() {
+      SirTrevor.log("Adding controllable to block " + this.blockID);
+      this.$control_ui = $('<div>', {'class': 'st-block__control-ui'});
+      _.each(
+        this.controls,
+        function(handler, cmd) {
+          // Bind configured handler to current block context
+          this.addUiControl(cmd, _.bind(handler, this));
+        },
+        this
+      );
+      this.$inner.append(this.$control_ui);
+    },
+  
+    getControlTemplate: function(cmd) {
+      return $("<a>",
+        { 'data-icon': cmd,
+          'class': 'st-icon st-block-control-ui-btn st-block-control-ui-btn--' + cmd
+        });
+    },
+  
+    addUiControl: function(cmd, handler) {
+      this.$control_ui.append(this.getControlTemplate(cmd));
+      this.$control_ui.on('click', '.st-block-control-ui-btn--' + cmd, handler);
+    }
   };
   /* Adds drop functionaltiy to this block */
   
@@ -1299,7 +1327,7 @@
   
       type: '',
   
-      class: function() {
+      'class': function() {
         return _.classify(this.type);
       },
   
@@ -1360,7 +1388,7 @@
       },
   
       addMessage: function(msg, additionalClass) {
-        var $msg = $("<span>", { html: msg, class: "st-msg " + additionalClass });
+        var $msg = $("<span>", { html: msg, 'class': "st-msg " + additionalClass });
         this.$messages.append($msg)
                       .addClass('st-block__messages--is-visible');
         return $msg;
@@ -1403,7 +1431,7 @@
     var drop_options = {
       html: ['<div class="st-block__dropzone">',
              '<span class="st-icon"><%= _.result(block, "icon_name") %></span>',
-             '<p><%= i18n.t("general:drop", { block: "<span>" + block.title() + "</span>" }) %>',
+             '<p><%= i18n.t("general:drop", { block: "<span>" + _.result(block, "title") + "</span>" }) %>',
              '</p></div>'].join('\n'),
       re_render_on_reorder: false
     };
@@ -1498,6 +1526,7 @@
         if (this.pastable) { this.withMixin(SirTrevor.BlockMixins.Pastable); }
         if (this.uploadable) { this.withMixin(SirTrevor.BlockMixins.Uploadable); }
         if (this.fetchable) { this.withMixin(SirTrevor.BlockMixins.Fetchable); }
+        if (this.controllable) { this.withMixin(SirTrevor.BlockMixins.Controllable); }
   
         if (this.formattable) { this._initFormatting(); }
   
@@ -1900,8 +1929,6 @@
         this.$inputs.hide();
         this.$editor.html($('<img>', { src: urlAPI.createObjectURL(file) })).show();
   
-        // Upload!
-        SirTrevor.EventBus.trigger('setSubmitButton', ['Please wait...']);
         this.uploader(
           file,
           function(data) {
@@ -2200,7 +2227,7 @@
       onClick: function() {
   
         var link = prompt(i18n.t("general:link")),
-            link_regex = /(ftp|http|https):\/\/./;
+            link_regex = /((ftp|http|https):\/\/.)|mailto(?=\:[-\.\w]+@)/;
   
         if(link && link.length > 0) {
   
@@ -3073,7 +3100,7 @@
 
   SirTrevor.bindFormSubmit = function(form) {
     if (!formBound) {
-      SirTrevor.submittable();
+      new SirTrevor.Submittable(form);
       form.bind('submit', this.onFormSubmit);
       formBound = true;
     }
@@ -3097,6 +3124,19 @@
       SirTrevor.EventBus.trigger("onError");
       ev.preventDefault();
     }
+  };
+
+  SirTrevor.getInstance = function(identifier) {
+    if (_.isUndefined(identifier)) {
+      return this.instances[0];
+    }
+
+    if (_.isString(identifier)) {
+      return _.find(this.instances,
+        function(editor){ return editor.ID === identifier; });
+    }
+
+    return this.instances[identifier];
   };
 
   SirTrevor.setBlockOptions = function(type, options) {
