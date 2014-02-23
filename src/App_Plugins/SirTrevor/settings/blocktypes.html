@@ -1,5 +1,8 @@
 ﻿<div ng-controller="SirTrevor.Settings.Blocktypes.Controller">
     <div ng-repeat="blocktype in blocktypes">
-        <input type="checkbox" value="{{blocktype.Name}}" check-list="model.value"> {{blocktype.Name}} ({{blocktype.Filename}})<br />
+        <div class="blocktype-item">
+            <input type="checkbox" value="{{blocktype.Name}}" check-list="model.value" id="blocktype_{{blocktype.Name}}">
+            <label for="blocktype_{{blocktype.Name}}">{{blocktype.Name}} ({{blocktype.Filename}})</label>
+        </div>
     </div>
 </div>
