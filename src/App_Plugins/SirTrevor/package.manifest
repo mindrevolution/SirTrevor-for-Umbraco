@@ -7,10 +7,24 @@
 				view: "~/App_Plugins/SirTrevor/SirTrevor.html",
 				hideLabel: true,
 				valueType: "JSON"	
+			},
+
+			prevalues: {
+				fields: [
+					{
+						label: "Blocks",
+						description: "Select all block types the users are allowed to choose from",
+						key: "blocktypes",
+						view: "~/App_Plugins/SirTrevor/settings/blocktypes.html"
+					} 
+				]
 			}
+
 		}
 	],
 	javascript: [
-	    "~/App_Plugins/SirTrevor/SirTrevor.controller.js"
+	    "~/App_Plugins/SirTrevor/SirTrevor.controller.js",
+		"~/App_Plugins/SirTrevor/settings/settings.blocktypes.controller.js",
+		"~/App_Plugins/SirTrevor/settings/settings.resource.js"
 	]
 }

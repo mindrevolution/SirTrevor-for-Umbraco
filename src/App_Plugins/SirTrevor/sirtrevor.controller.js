@@ -1,29 +1,23 @@
-angular.module("umbraco").controller("Sir.Trevor.Controller", function ($scope, dialogService, assetsService) {
+angular.module("umbraco").controller("SirTrevor.Controller", function ($scope, dialogService, assetsService) {
 	
 	assetsService.load(
 			["/App_Plugins/SirTrevor/lib/eventable.js",
 			"/App_Plugins/SirTrevor/lib/sir-trevor.min.js",
-            "/App_Plugins/SirTrevor/formatters/umbraco.js",
+            "/App_Plugins/SirTrevor/formatters/umbraco.min.js",
 			"/App_Plugins/SirTrevor/blocks/umbraco-image.js",
-			'/App_Plugins/SirTrevor/blocks/content-picker.js'])
+			"/App_Plugins/SirTrevor/blocks/content-picker.js"])
 		.then(function () {
+		    //$scope.blocktypes = _.where($scope.editorState.preValues, { key: "blocktypes" })[0];
+		    console.log("editor config", $scope.model.config);
+
 			var editor = new SirTrevor.Editor({
-			el: $(".sir-trevor"),
-			blockTypes: [
-                "Heading",
-				"Text",
-				"List",
-				"Quote",
-				"UmbracoImage",
-                "Video",
-                "ContentPicker"
-			]
+			    el: $(".sir-trevor"),
+			    blockTypes: $scope.model.config.blocktypes
 		    });
 
 			$scope.$on("formSubmitting", function (e, args) {
 				editor.onFormSubmit();
 				$scope.model.value = editor.dataStore;
-				console.log("editor.dataStore", editor.dataStore);
 			});
 	});
 
