@@ -1,4 +1,5 @@
-angular.module("umbraco").controller("SirTrevor.Controller", function ($scope, dialogService, assetsService) {
+angular.module("umbraco").controller("SirTrevor.Controller", ['$scope', 'dialogService', 'assetsService',
+    function ($scope, dialogService, assetsService) {
 	
 	assetsService.load(
 			["/App_Plugins/SirTrevor/lib/eventable.js",
@@ -24,4 +25,4 @@ angular.module("umbraco").controller("SirTrevor.Controller", function ($scope, d
 	assetsService.loadCss("/app_plugins/SirTrevor/lib/sir-trevor.css");
 	assetsService.loadCss("/app_plugins/SirTrevor/lib/sir-trevor-icons.css");
 	assetsService.loadCss("/app_plugins/SirTrevor/umbraco-backend.css");
-});
+}]);
