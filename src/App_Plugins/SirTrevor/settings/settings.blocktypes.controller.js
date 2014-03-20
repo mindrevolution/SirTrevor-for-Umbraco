@@ -1,6 +1,5 @@
 ﻿angular.module("umbraco")
-    .controller("SirTrevor.Settings.Blocktypes.Controller",
-
+    .controller("SirTrevor.Settings.Blocktypes.Controller", [ '$scope', 'sirtrevorSettingsResource', 
     function ($scope, sirtrevorSettingsResource) {
         sirtrevorSettingsResource.getAvailableBlocktypes().then(function (response) {
             $scope.blocktypes = response.data;
@@ -14,7 +13,7 @@
             $scope.model.value.push(blocktype);
         };
 
-    });
+    }]);
 
 app.directive('checkList', function () {
     return {
