@@ -1,5 +1,5 @@
 ﻿//- adds this resource to the umbraco.resources module
-angular.module("umbraco.resources").factory("sirtrevorSettingsResource",
+angular.module("umbraco.resources").factory("sirtrevorSettingsResource", ['$q', '$http',
     function ($q, $http) {
         // - return a factory object
         return {
@@ -8,5 +8,5 @@ angular.module("umbraco.resources").factory("sirtrevorSettingsResource",
                 return $http.get("SirTrevor/SettingsApi/GetAvailableBlocktypes");
             }
         };
-    }
+    }]
 );
