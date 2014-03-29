@@ -69,7 +69,7 @@ SirTrevor.Blocks.ContentPicker = (function () {
 
         setContent: function (mediaid) {
             var content = block.blockStorage.data;
-            block.$editor.html($("<a>", { href: "#", text: content.name, title: content.name + " (" + content.id + ")" }));
+            block.$editor.html($("<a>", { href: content.Url, text: content.name, title: content.name + " (" + content.id + ")" }));
 
             // TODO: Open content in a template? http://umbraco.github.io/Belle/#/api/umbraco.services.dialogService#open
 

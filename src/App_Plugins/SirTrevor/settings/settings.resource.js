@@ -5,7 +5,7 @@ angular.module("umbraco.resources").factory("sirtrevorSettingsResource", ['$q', 
         return {
             // - call the API controller
             getAvailableBlocktypes: function () {
-                return $http.get("SirTrevor/SettingsApi/GetAvailableBlocktypes");
+                return $http.get("backoffice/SirTrevor/SettingsApi/GetAvailableBlocktypes");
             }
         };
     }]

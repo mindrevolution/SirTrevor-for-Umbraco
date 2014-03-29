@@ -12,7 +12,7 @@ using System.Text.RegularExpressions;
 namespace SirTrevor.Settings.Controllers
 {
 
-    [Umbraco.Web.Mvc.PluginController("SirTrevor")]
+    [Umbraco.Web.Mvc.PluginController("SirTrevor"), IsBackOffice]
     public class SettingsApiController : UmbracoAuthorizedJsonController
     {
         public SettingsApiController()
@@ -36,17 +36,22 @@ namespace SirTrevor.Settings.Controllers
             bt = new Blocktype("Quote", "built-in"); blocktypes.Add(bt);
             bt = new Blocktype("Video", "built-in"); blocktypes.Add(bt);
 
-            foreach (string filename in System.IO.Directory.GetFiles(System.Web.HttpContext.Current.Server.MapPath(blocksroot), "*.js"))
+            string[] jsfiles = System.IO.Directory.GetFiles(System.Web.HttpContext.Current.Server.MapPath(blocksroot), "*.js", System.IO.SearchOption.TopDirectoryOnly);
+            foreach (string filename in jsfiles)
             {
-                bt = new Blocktype();
+                // - use ".min" variant if existing (and omit non-minified version of the file in that event)
+                if (!jsfiles.Contains(filename.Replace(".js",".min.js")))
+                {
+                    bt = new Blocktype();
 
-                // - get block name from javascript source
-                Match m = blocknameRegex.Match(System.IO.File.ReadAllText(filename));
-                bt.Name = m.Groups[3].Value;
+                    // - get block name from javascript source
+                    Match m = blocknameRegex.Match(System.IO.File.ReadAllText(filename));
+                    bt.Name = m.Groups[3].Value;
 
-                bt.Filename = System.IO.Path.GetFileName(filename);
+                    bt.Filename = System.IO.Path.GetFileName(filename);
 
-                blocktypes.Add(bt);
+                    blocktypes.Add(bt);
+                }
             }
 
             return blocktypes;
