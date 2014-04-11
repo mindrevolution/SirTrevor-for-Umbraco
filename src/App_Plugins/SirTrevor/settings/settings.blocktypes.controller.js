@@ -20,7 +20,7 @@
             $scope.model.value = $scope.blocktypes;
         });
 
-        $scope.getItemByName = function(objects, itemName) {
+        $scope.getItemByName = function (objects, itemName) {
             for (var i = 0; i < objects.length; i += 1) {
                 var object = objects[i];
 
@@ -28,5 +28,5 @@
                     return object;
                 }
             }
-        }
+        };
     }]);

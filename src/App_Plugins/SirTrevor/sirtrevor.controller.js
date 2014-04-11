@@ -13,7 +13,6 @@ angular.module("umbraco").controller("SirTrevor.Controller", ['$scope', 'dialogS
                 if (item.Filename) {
                     assets.push("/App_Plugins/SirTrevor/blocks/" + item.Filename);
                 }
-
                 activeblocktypes.push(item.Name);
             }
         });
