@@ -1,4 +1,19 @@
-(function() {
+(function (root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as a module.
+    define('eventable', ['underscore'], function(_) {
+      return (root.Eventable = factory(_));
+    });
+  } else if (typeof exports !== 'undefined') {
+    // Node. Does not work with strict CommonJS, but only CommonJS-like
+    // enviroments that support module.exports, like Node.
+    var _ = require('underscore');
+    module.exports = factory(_);
+  } else {
+    // Browser globals
+    root.Eventable = factory(root._);
+  }
+}(this, function(_) {
 
   // Copy and pasted straight out of Backbone 1.0.0
   // We'll try and keep this updated to the latest
@@ -172,10 +187,6 @@
   Eventable.bind   = Eventable.on;
   Eventable.unbind = Eventable.off;
 
-  if (typeof define !== "undefined" && typeof define === "function" && define.amd) {
-    define( "eventable", [], function () { return Eventable; } );
-  }
+  return Eventable;
 
-  this.Eventable = Eventable;
-
-})();
+}));

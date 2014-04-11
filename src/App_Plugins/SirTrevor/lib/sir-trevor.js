@@ -4,7 +4,7 @@
  * Released under the MIT license
  * www.opensource.org/licenses/MIT
  *
- * 2013-12-21
+ * 2014-03-22
  */
 
 (function ($, _){
@@ -48,7 +48,10 @@
     required: [],
     uploadUrl: '/attachments',
     baseImageUrl: '/sir-trevor-uploads/',
-    errorsContainer: undefined
+    errorsContainer: undefined,
+    toMarkdown: {
+      aggresiveHTMLStrip: false
+    }
   };
 
   SirTrevor.BlockMixins = {};
@@ -293,7 +296,7 @@
     }
   };
   
-  if (window.i18n === undefined) {
+  if (window.i18n === undefined || window.i18n.init === undefined) {
     // Minimal i18n stub that only reads the English strings
     SirTrevor.log("Using i18n stub");
     window.i18n = {
@@ -508,19 +511,19 @@
   
     block.resetMessages();
   
-    var callbackSuccess = function(data){
+    var callbackSuccess = function(){
       SirTrevor.log('Upload callback called');
   
       if (!_.isUndefined(success) && _.isFunction(success)) {
-        _.bind(success, block)(data);
+        success.apply(block, arguments);
       }
     };
   
-    var callbackError = function(jqXHR, status, errorThrown){
+    var callbackError = function(){
       SirTrevor.log('Upload callback error called');
   
       if (!_.isUndefined(error) && _.isFunction(error)) {
-        _.bind(error, block)(status);
+        error.apply(block, arguments);
       }
     };
   
@@ -615,7 +618,7 @@
     }
   
     html = html.replace(/\[([^\]]+)\]\(([^\)]+)\)/gm,function(match, p1, p2){
-      return "<a href='"+p2+"'>"+p1.replace(/\n/g, '')+"</a>";
+      return "<a href='"+p2+"'>"+p1.replace(/\r?\n/g, '')+"</a>";
     });
   
     // This may seem crazy, but because JS doesn't have a look behind,
@@ -625,10 +628,10 @@
     html = _.reverse(
              _.reverse(html)
              .replace(/_(?!\\)((_\\|[^_])*)_(?=$|[^\\])/gm, function(match, p1) {
-                return ">i/<"+ p1.replace(/\n/g, '').replace(/[\s]+$/,'') +">i<";
+                return ">i/<"+ p1.replace(/\r?\n/g, '').replace(/[\s]+$/,'') +">i<";
              })
              .replace(/\*\*(?!\\)((\*\*\\|[^\*\*])*)\*\*(?=$|[^\\])/gm, function(match, p1){
-                return ">b/<"+ p1.replace(/\n/g, '').replace(/[\s]+$/,'') +">b<";
+                return ">b/<"+ p1.replace(/\r?\n/g, '').replace(/[\s]+$/,'') +">b<";
              })
             );
   
@@ -657,12 +660,12 @@
     }
   
     if (shouldWrap) {
-      html = html.replace(/\n\n/gm, "</div><div><br></div><div>");
-      html = html.replace(/\n/gm, "</div><div>");
+      html = html.replace(/\r?\n\r?\n/gm, "</div><div><br></div><div>");
+      html = html.replace(/\r?\n/gm, "</div><div>");
     }
   
     html = html.replace(/\t/g, "&nbsp;&nbsp;&nbsp;&nbsp;")
-               .replace(/\n/g, "<br>")
+               .replace(/\r?\n/g, "<br>")
                .replace(/\*\*/, "")
                .replace(/__/, "");  // Cleanup any markdown characters left
   
@@ -774,7 +777,11 @@
     }
   
     // Strip remaining HTML
-    markdown = markdown.replace(/<\/?[^>]+(>|$)/g, "");
+    if (SirTrevor.DEFAULTS.toMarkdown.aggresiveHTMLStrip) {
+      markdown = markdown.replace(/<\/?[^>]+(>|$)/g, "");
+    } else {
+      markdown = markdown.replace(/<(?=\S)\/?[^>]+(>|$)/ig, "");
+    }
   
     return markdown;
   };
@@ -794,14 +801,14 @@
   
     addQueuedItem: function(name, deffered) {
       SirTrevor.log("Adding queued item for " + this.blockID + " called " + name);
-      SirTrevor.EventBus.trigger("onUploadStart");
+      SirTrevor.EventBus.trigger("onUploadStart", this.blockID);
   
       this._queued.push({ name: name, deffered: deffered });
     },
   
     removeQueuedItem: function(name) {
       SirTrevor.log("Removing queued item for " + this.blockID + " called " + name);
-      SirTrevor.EventBus.trigger("onUploadStop");
+      SirTrevor.EventBus.trigger("onUploadStop", this.blockID);
   
       this._queued = _.reject(this._queued, function(queued){ return queued.name == name; });
     },
@@ -895,7 +902,7 @@
         this.onDrop(e.dataTransfer);
       }
   
-      SirTrevor.EventBus.trigger('block:content:dropped');
+      SirTrevor.EventBus.trigger('block:content:dropped', this.blockID);
     }
   
   };
@@ -1046,6 +1053,7 @@
   
     var BlockReorder = function(block_element) {
       this.$block = block_element;
+      this.blockID = this.$block.attr('id');
   
       this._ensureElement();
       this._bindFunctions();
@@ -1080,7 +1088,7 @@
       },
   
       onMouseDown: function() {
-        SirTrevor.EventBus.trigger("block:reorder:down");
+        SirTrevor.EventBus.trigger("block:reorder:down", this.blockID);
       },
   
       onDrop: function(ev) {
@@ -1104,14 +1112,14 @@
         var btn = $(ev.currentTarget).parent();
   
         ev.originalEvent.dataTransfer.setDragImage(this.$block[0], btn.position().left, btn.position().top);
-        ev.originalEvent.dataTransfer.setData('Text', this.$block.attr('id'));
+        ev.originalEvent.dataTransfer.setData('Text', this.blockID);
   
-        SirTrevor.EventBus.trigger("block:reorder:dragstart");
+        SirTrevor.EventBus.trigger("block:reorder:dragstart", this.blockID);
         this.$block.addClass('st-block--dragging');
       },
   
       onDragEnd: function(ev) {
-        SirTrevor.EventBus.trigger("block:reorder:dragend");
+        SirTrevor.EventBus.trigger("block:reorder:dragend", this.blockID);
         this.$block.removeClass('st-block--dragging');
       },
   
@@ -1267,7 +1275,7 @@
   
     beforeLoadingData: function() {
       SirTrevor.log("loadData for " + this.blockID);
-      SirTrevor.EventBus.trigger("editor/block/loadData");
+      SirTrevor.EventBus.trigger("block:loadData", this.blockID);
       this.loadData(this.getData());
     },
   
@@ -1732,13 +1740,10 @@
       getSelectionForFormatter: function() {
         _.defer(function(){
           var selection = window.getSelection(),
-             selectionStr = selection.toString().trim();
+             selectionStr = selection.toString().trim(),
+             eventType = (selectionStr === '') ? 'hide' : 'position';
   
-          if (selectionStr === '') {
-            SirTrevor.EventBus.trigger('formatter:hide');
-          } else {
-            SirTrevor.EventBus.trigger('formatter:positon');
-          }
+          SirTrevor.EventBus.trigger('formatter:' + eventType , this);
         });
        },
   
@@ -1918,6 +1923,16 @@
       }, this));
     },
   
+    onUploadSuccess : function(data) {
+      this.setData(data);
+      this.ready();
+    },
+  
+    onUploadError : function(jqXHR, status, errorThrown){
+      this.addMessage(i18n.t('blocks:image:upload_error'));
+      this.ready();
+    },
+  
     onDrop: function(transferData){
       var file = transferData.files[0],
           urlAPI = (typeof URL !== "undefined") ? URL : (typeof webkitURL !== "undefined") ? webkitURL : null;
@@ -1929,17 +1944,7 @@
         this.$inputs.hide();
         this.$editor.html($('<img>', { src: urlAPI.createObjectURL(file) })).show();
   
-        this.uploader(
-          file,
-          function(data) {
-            this.setData(data);
-            this.ready();
-          },
-          function(error){
-            this.addMessage(i18n.t('blocks:image:upload_error'));
-            this.ready();
-          }
-        );
+        this.uploader(file, this.onUploadSuccess, this.onUploadError);
       }
     }
   });
@@ -2607,9 +2612,11 @@
         this._bindFunctions();
   
         this.store("create");
-        this.build();
   
         SirTrevor.instances.push(this);
+  
+        this.build();
+  
         SirTrevor.bindFormSubmit(this.$form);
       },
   
@@ -2874,7 +2881,7 @@
   
         block.remove();
   
-        SirTrevor.EventBus.trigger("block:remove");
+        SirTrevor.EventBus.trigger("block:remove", block);
         this.triggerBlockCountUpdate();
   
         this.$wrapper.toggleClass('st--block-limit-reached', this._blockLimitReached());
