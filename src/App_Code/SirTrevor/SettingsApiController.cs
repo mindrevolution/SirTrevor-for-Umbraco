@@ -30,11 +30,11 @@ namespace SirTrevor.Settings.Controllers
             Blocktype bt;
 
             // - add buildin blocks
-            bt = new Blocktype("Heading", "built-in"); blocktypes.Add(bt);
-            bt = new Blocktype("Text", "built-in"); blocktypes.Add(bt);
-            bt = new Blocktype("List", "built-in"); blocktypes.Add(bt);
-            bt = new Blocktype("Quote", "built-in"); blocktypes.Add(bt);
-            bt = new Blocktype("Video", "built-in"); blocktypes.Add(bt);
+            bt = new Blocktype("Heading", null); blocktypes.Add(bt);
+            bt = new Blocktype("Text", null); blocktypes.Add(bt);
+            bt = new Blocktype("List", null); blocktypes.Add(bt);
+            bt = new Blocktype("Quote", null); blocktypes.Add(bt);
+            bt = new Blocktype("Video", null); blocktypes.Add(bt);
 
             string[] jsfiles = System.IO.Directory.GetFiles(System.Web.HttpContext.Current.Server.MapPath(blocksroot), "*.js", System.IO.SearchOption.TopDirectoryOnly);
             foreach (string filename in jsfiles)
@@ -69,16 +69,21 @@ namespace SirTrevor.Settings.Controllers
     {
         public string Name { get; set; }
         public string Filename { get; set; }
+        public bool Selected { get; set; }
 
         public Blocktype()
         {
         }
 
-        public Blocktype(string name, string filename)
+        public Blocktype(string name, string filename, bool selected)
         {
             this.Name = name;
             this.Filename = filename;
+            this.Selected = selected;
         }
+
+        public Blocktype(string name, string filename) : this(name, filename, false) {}
+
     }
 
 }
