@@ -26,7 +26,7 @@ Install the [package](http://our.umbraco.org/projects/backoffice-extensions/sir-
 ### Manual installation
 These steps are required for manual installation:
 - add [/App_Plugins/SirTrevor/](https://github.com/mindrevolution/SirTrevor-for-Umbraco/tree/master/src/App_Plugins/SirTrevor) to your website
-- also copy over [/App_Code/SirTrevor.cshtml](https://github.com/mindrevolution/SirTrevor-for-Umbraco/blob/master/src/App_Code/SirTrevor.cshtml)
+- also copy over [/App_Code/SirTrevor.cshtml](https://github.com/mindrevolution/SirTrevor-for-Umbraco/blob/master/src/App_Code/SirTrevor.cshtml) and [/App_Code/SirTrevor/](https://github.com/mindrevolution/SirTrevor-for-Umbraco/tree/master/src/App_Code/SirTrevor)
 - *optionally* copy the [sample template/view](https://github.com/mindrevolution/SirTrevor-for-Umbraco/blob/master/src/Views/BlocksPage.cshtml) as well
 
 ### Customize the image block size
