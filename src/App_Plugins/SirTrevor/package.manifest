@@ -23,7 +23,7 @@
 		}
 	],
 	javascript: [
-	    "~/App_Plugins/SirTrevor/SirTrevor.controller.min.js",
+	    "~/App_Plugins/SirTrevor/sirtrevor.controller.min.js",
 		"~/App_Plugins/SirTrevor/settings/settings.blocktypes.controller.min.js",
 		"~/App_Plugins/SirTrevor/settings/settings.resource.min.js"
 	]
