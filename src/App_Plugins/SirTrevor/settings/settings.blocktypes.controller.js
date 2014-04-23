@@ -6,12 +6,14 @@
             $scope.blocktypes = response.data;
 
             // - existing assigments? Get them over (selected: true/false?)
-            if ($scope.model.value.length > 0) {
+            if ($scope.model.value !== null && $scope.model.value.length > 0) {
                 angular.forEach($scope.blocktypes, function (item, index) {
                     var curmatch = $scope.getItemByName($scope.model.value, item.Name);
 
                     if (curmatch) {
-                        $scope.blocktypes[index].Selected = curmatch.Selected;
+                        $scope.blocktypes[index].Active = curmatch.Active;
+                        $scope.blocktypes[index].Mandatory = curmatch.Mandatory;
+                        $scope.blocktypes[index].Limit = curmatch.Limit;
                     }
                 });
             }

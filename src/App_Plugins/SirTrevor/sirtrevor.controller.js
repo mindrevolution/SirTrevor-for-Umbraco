@@ -1,19 +1,32 @@
 angular.module("umbraco").controller("SirTrevor.Controller", ['$scope', 'dialogService', 'assetsService',
     function ($scope, dialogService, assetsService) {
 
-        // - load all selected blocks	
         var assets = [
             "/App_Plugins/SirTrevor/lib/eventable.js",
             "/App_Plugins/SirTrevor/lib/sir-trevor.min.js",
             "/App_Plugins/SirTrevor/formatters/umbraco.min.js"
         ];
+
         var activeblocktypes = [];
+        var mandatoryblocktypes = [];
+        var blocktypeslimits = [];
         angular.forEach($scope.model.config.blocktypes, function (item, index) {
-            if (item.Selected) {
+            // - active block types
+            if (item.Active) {
                 if (item.Filename) {
                     assets.push("/App_Plugins/SirTrevor/blocks/" + item.Filename);
                 }
                 activeblocktypes.push(item.Name);
+            }
+
+            // - mandatory block types
+            if (item.Mandatory) {
+                mandatoryblocktypes.push(item.Name);
+            }
+
+            // - mandatory block types
+            if (item.Limit && parseInt(item.Limit) > 0) {
+                blocktypeslimits[item.Name] = item.Limit;
             }
         });
         //console.log("assets", assets);
@@ -24,8 +37,10 @@ angular.module("umbraco").controller("SirTrevor.Controller", ['$scope', 'dialogS
 			    el: $(".sir-trevor"),
                 // - activate selected block types for this instance
 			    blockTypes: activeblocktypes,
-			    blockLimit: parseInt($scope.model.config.blockLimit)
-		    });
+			    blockLimit: parseInt($scope.model.config.blockLimit),
+			    required: mandatoryblocktypes,
+			    blockTypeLimits: blocktypeslimits
+			});
 
 			$scope.$on("formSubmitting", function (e, args) {
 				editor.onFormSubmit();

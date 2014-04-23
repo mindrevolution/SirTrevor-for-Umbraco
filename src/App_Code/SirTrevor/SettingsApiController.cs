@@ -15,12 +15,7 @@ namespace SirTrevor.Settings.Controllers
     [Umbraco.Web.Mvc.PluginController("SirTrevor"), IsBackOffice]
     public class SettingsApiController : UmbracoAuthorizedJsonController
     {
-        public SettingsApiController()
-        {
-            //
-            // TODO: Add constructor logic here
-            //
-        }
+        public SettingsApiController() {}
 
         private List<Blocktype> ScanBlocksOnDisk()
         {
@@ -69,21 +64,26 @@ namespace SirTrevor.Settings.Controllers
     {
         public string Name { get; set; }
         public string Filename { get; set; }
-        public bool Selected { get; set; }
+        public bool Active { get; set; }
+        public bool Mandatory { get; set; }
+        public int Limit { get; set; }
 
         public Blocktype()
         {
         }
 
-        public Blocktype(string name, string filename, bool selected)
+        public Blocktype(string name, string filename, bool active, bool mandatory, int limit)
         {
             this.Name = name;
             this.Filename = filename;
-            this.Selected = selected;
+            this.Active = active;
+            this.Mandatory = mandatory;
+            this.Limit = limit;
         }
 
-        public Blocktype(string name, string filename) : this(name, filename, false) {}
-
+        public Blocktype(string name, string filename) : this(name, filename, false, false, 0) {}
+        public Blocktype(string name, string filename, bool active) : this(name, filename, active, false, 0) { }
+        public Blocktype(string name, string filename, bool active, bool mandatory) : this(name, filename, active, mandatory, 0) { }
     }
 
 }

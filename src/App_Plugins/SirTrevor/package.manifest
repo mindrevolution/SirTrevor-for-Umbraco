@@ -12,14 +12,8 @@
 			prevalues: {
 				fields: [
 					{
-						label: "Blocks",
-						description: "Select all block types the users are allowed to choose from",
-						key: "blocktypes",
-						view: "~/App_Plugins/SirTrevor/settings/blocktypes.html"
-					},
-					{
 						label: "Maximum number of blocks",
-						description: "The total number of blocks that can be displayed (0 = infinite).",
+						description: "The total maximum number of blocks (of any type) that can be displayed (0 = infinite).",
 						key: "blockLimit",
 						view: "requiredfield",
 						validation: [
@@ -27,6 +21,12 @@
 								type: "Required" 
 							}                        
 						]
+					},
+					{
+						label: "Block types",
+						description: "Configure the block types available to the user.",
+						key: "blocktypes",
+						view: "~/App_Plugins/SirTrevor/settings/blocktypes.html"
 					}
 				]
 			}
@@ -36,6 +36,6 @@
 	javascript: [
 	    "~/App_Plugins/SirTrevor/sirtrevor.controller.min.js",
 		"~/App_Plugins/SirTrevor/settings/settings.blocktypes.controller.min.js",
-		"~/App_Plugins/SirTrevor/settings/settings.resource.min.js"
+		"~/App_Plugins/SirTrevor/settings/settings.resource.min.js",
 	]
 }

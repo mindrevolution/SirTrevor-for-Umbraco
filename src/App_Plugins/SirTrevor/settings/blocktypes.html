@@ -1,10 +1,35 @@
 ﻿<div ng-controller="SirTrevor.Settings.Blocktypes.Controller">
-    <div ng-repeat="blocktype in blocktypes">
 
-        <div class="blocktype-item">
-            <input type="checkbox" value="{{blocktype.Name}}" ng-model="blocktype.Selected" id="blocktype_{{blocktype.Name}}">
-            <label for="blocktype_{{blocktype.Name}}">{{blocktype.Name}} ({{blocktype.Filename || "built-in"}})</label>
-        </div>
+    <table class="table table-condensed">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>&nbsp;</th>
+                <th>active</th>
+                <th>mandatory</th>
+                <th>limit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="blocktype in blocktypes" class="blocktype-item">
+                <td>
+                    <label for="blocktype_{{blocktype.Name}}">{{blocktype.Name}}</label>
+                </td>
+                <td>
+                    <a ng-if="blocktype.Filename" target="_blank" href="/App_Plugins/SirTrevor/blocks/{{blocktype.Filename}}">{{blocktype.Filename}} <i class="icon-code"></i></a>
+                    <p ng-if="!blocktype.Filename">(built-in)</p>
+                </td>
+                <td>
+                    <input type="checkbox" value="{{blocktype.Name}}" ng-model="blocktype.Active" id="blocktype_{{blocktype.Name}}">
+                </td>
+                <td>
+                    <input type="checkbox" value="{{blocktype.Name}}" ng-model="blocktype.Mandatory" id="blocktype_{{blocktype.Name}}_Mandatory">
+                </td>
+                <td>
+                    <input type="number" size="3" maxlength="5" value="{{blocktype.Limit}}" ng-model="blocktype.Limit" id="blocktype_{{blocktype.Name}}_Limit" style="width:50px;" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
-    </div>
 </div>  
