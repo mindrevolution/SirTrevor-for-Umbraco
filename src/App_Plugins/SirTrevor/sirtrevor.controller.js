@@ -23,7 +23,8 @@ angular.module("umbraco").controller("SirTrevor.Controller", ['$scope', 'dialogS
 			var editor = new SirTrevor.Editor({
 			    el: $(".sir-trevor"),
                 // - activate selected block types for this instance
-			    blockTypes: activeblocktypes
+			    blockTypes: activeblocktypes,
+			    blockLimit: parseInt($scope.model.config.blockLimit)
 		    });
 
 			$scope.$on("formSubmitting", function (e, args) {

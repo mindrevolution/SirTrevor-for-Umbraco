@@ -16,7 +16,18 @@
 						description: "Select all block types the users are allowed to choose from",
 						key: "blocktypes",
 						view: "~/App_Plugins/SirTrevor/settings/blocktypes.html"
-					} 
+					},
+					{
+						label: "Maximum number of blocks",
+						description: "The total number of blocks that can be displayed (0 = infinite).",
+						key: "blockLimit",
+						view: "requiredfield",
+						validation: [
+							{
+								type: "Required" 
+							}                        
+						]
+					}
 				]
 			}
 
