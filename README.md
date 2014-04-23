@@ -18,6 +18,9 @@ This Umbraco plugin package is for Umbraco 7 and the new "Belle UI".
 - local links are saved following Umbraco's localLink concept
 - [Razor helper](https://github.com/mindrevolution/SirTrevor-for-Umbraco/blob/master/src/App_Code/SirTrevor.cshtml) included to render the markdown (utilizes [MarkdownDeep](https://github.com/toptensoftware/markdowndeep))
 - [sample template/view](https://github.com/mindrevolution/SirTrevor-for-Umbraco/blob/master/src/Views/BlocksPage.cshtml) included, showing how to render the Sir Trevor JSON on the frontend
+- **NEW** Data type configuration: Allow block types, require block types, limit amount of blocks used (total and per block type)
+- **NEW** Auto-Discovery of Sir Trevor block types (.js files) that are placed in /blocks/ subfolder (respecting minified variants)
+- **NEW** Multi instance support
 
 
 ### Umbraco package installation
