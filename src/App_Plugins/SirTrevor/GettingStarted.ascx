@@ -15,6 +15,10 @@
 <p>Have a look at the sample template and build your own template from that:</p>
 <p><img src="/App_Plugins/SirTrevor/GettingStarted.res/SampleTemplate.png" style="max-width:75%;border:2px solid silver;" /></p>
 
+<h2 style="margin-top:50px;">Add new block types</h2>
+<p>It's easy to daas ne block types, just copy them to the /blocks/ folder and customize the editor (see above):</p>
+<p><img src="/App_Plugins/SirTrevor/GettingStarted.res/AddBlockTypes.png" style="max-width:75%;border:2px solid silver;" /></p>
+
 <h2 style="margin-top:50px;">Links</h2>
 <p>
     <a href="http://our.umbraco.org/projects/backoffice-extensions/sir-trevor" target="_blank">Sir Trevor for Umbraco at the Umbraco Package Repositiory</a>
