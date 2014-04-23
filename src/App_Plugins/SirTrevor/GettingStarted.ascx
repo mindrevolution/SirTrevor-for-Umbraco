@@ -7,6 +7,10 @@
 <p>Add the Datatype "Sir Trevor Editor" to your desired document type:</p>
 <p><img src="/App_Plugins/SirTrevor/GettingStarted.res/AddDatatype.png" style="max-width:75%;border:2px solid silver;" /></p>
 
+<h2 style="margin-top:50px;">Configure the Datatype to your liking</h2>
+<p>Decide which block types the users are allowed to choose from an require or limit (some of) them:</p>
+<p><img src="/App_Plugins/SirTrevor/GettingStarted.res/ConfigureDatatype.png" style="max-width:75%;border:2px solid silver;" /></p>
+
 <h2 style="margin-top:50px;">Create (or edit) the template(s)</h2>
 <p>Have a look at the sample template and build your own template from that:</p>
 <p><img src="/App_Plugins/SirTrevor/GettingStarted.res/SampleTemplate.png" style="max-width:75%;border:2px solid silver;" /></p>
