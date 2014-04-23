@@ -29,12 +29,12 @@ angular.module("umbraco").controller("SirTrevor.Controller", ['$scope', 'dialogS
                 blocktypeslimits[item.Name] = item.Limit;
             }
         });
-        //console.log("assets", assets);
-        
-	assetsService.load(assets)
-		.then(function () {
+
+        assetsService.load(assets, $scope)
+        .then(function () {
+
 			var editor = new SirTrevor.Editor({
-			    el: $(".sir-trevor"),
+			    el: $("#sir-trevor-" + $scope.model.id),
                 // - activate selected block types for this instance
 			    blockTypes: activeblocktypes,
 			    blockLimit: parseInt($scope.model.config.blockLimit),
