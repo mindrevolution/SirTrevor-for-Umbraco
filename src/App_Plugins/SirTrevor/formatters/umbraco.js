@@ -36,15 +36,17 @@
         onLinkSelected: function (e) {
             var link;
             var linktitle;
-            if (e.id != "") {
-                // - internal Umbraco link
-                link = "/{localLink:" + e.id + "}";
-                linktitle = e.name;
-            } else {
+
+            if (typeof e.id === "undefined") {
                 // - classic URL
                 link = e.url;
                 linktitle = e.name;
+            } else {
+                // - internal Umbraco link
+                link = "/{localLink:" + e.id + "}";
+                linktitle = e.name;
             }
+
             // - restore saved selection
             formatter.restoreSelection(lastselection);
             // - assign link
