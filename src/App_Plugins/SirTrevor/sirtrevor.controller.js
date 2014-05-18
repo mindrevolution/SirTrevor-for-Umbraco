@@ -50,5 +50,5 @@ angular.module("umbraco").controller("SirTrevor.Controller", ['$scope', 'dialogS
 
 	assetsService.loadCss("/app_plugins/SirTrevor/lib/sir-trevor.css");
 	assetsService.loadCss("/app_plugins/SirTrevor/lib/sir-trevor-icons.css");
-	assetsService.loadCss("/app_plugins/SirTrevor/umbraco-backend.css");
+	assetsService.loadCss("/app_plugins/SirTrevor/umbraco-backend.min.css");
 }]);
