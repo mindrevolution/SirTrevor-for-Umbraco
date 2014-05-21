@@ -6,3 +6,11 @@
     string html = Umbraco.Web.Templates.TemplateUtilities.ParseInternalLinks(markdownTransformer.Transform(markdown));
     @(new HtmlString(html))
 }
+
+@helper RemoveMarkdown(string markdown) {
+    // Remove all markdown from supplied string
+    var markdownTransformer = new Markdown();
+    markdownTransformer.SummaryLength = -1;
+    string text = markdownTransformer.Transform(markdown);
+    @(new HtmlString(text))
+}
