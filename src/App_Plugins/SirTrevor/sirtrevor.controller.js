@@ -30,22 +30,30 @@ angular.module("umbraco").controller("SirTrevor.Controller", ['$scope', 'dialogS
             }
         });
 
+        $scope.createEditor = function (scope) {
+            console.log("createEditor", $("#sir-trevor-" + $scope.model.id), $("#sir-trevor-" + $scope.model.id).val());
+
+            var editor = new SirTrevor.Editor({
+                el: $("#sir-trevor-" + $scope.model.id),
+                // - activate selected block types for this instance
+                blockTypes: activeblocktypes,
+                blockLimit: parseInt($scope.model.config.blockLimit),
+                required: mandatoryblocktypes,
+                blockTypeLimits: blocktypeslimits
+            });
+
+            $scope.$on("formSubmitting", function (e, args) {
+                editor.onFormSubmit();
+                $scope.model.value = editor.dataStore;
+            });
+        }
+
         assetsService.load(assets, $scope)
         .then(function () {
 
-			var editor = new SirTrevor.Editor({
-			    el: $("#sir-trevor-" + $scope.model.id),
-                // - activate selected block types for this instance
-			    blockTypes: activeblocktypes,
-			    blockLimit: parseInt($scope.model.config.blockLimit),
-			    required: mandatoryblocktypes,
-			    blockTypeLimits: blocktypeslimits
-			});
-
-			$scope.$on("formSubmitting", function (e, args) {
-				editor.onFormSubmit();
-				$scope.model.value = editor.dataStore;
-			});
+            setTimeout(function () {
+                $scope.createEditor($scope);
+            }, 10);
 	});
 
 	assetsService.loadCss("/app_plugins/SirTrevor/lib/sir-trevor.css");
