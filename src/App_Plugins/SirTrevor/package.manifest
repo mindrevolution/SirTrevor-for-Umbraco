@@ -23,11 +23,28 @@
 						]
 					},
 					{
+						label: "Align editor centered",
+						description: "If the editor doesn't span the entire width of the content editing area, center it. Otherwise left aligned.",
+						key: "editorAlignCentered",
+						view: "boolean"
+					},
+					{
+						label: "Maximum editor width",
+						description: "The maximum width the Sir Trevor editor will expand to, i.e. 500px or 80%.",
+						key: "editorMaxWidth",
+						view: "requiredfield",
+						validation: [
+							{
+								type: "Required" 
+							}                        
+						]
+					},
+					{
 						label: "Block types",
 						description: "Configure the block types available to the user.",
 						key: "blocktypes",
 						view: "~/App_Plugins/SirTrevor/settings/blocktypes.html"
-					}
+					},
 				]
 			}
 

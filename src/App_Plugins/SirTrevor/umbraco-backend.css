@@ -1,17 +1,12 @@
-﻿/* limits the size to the thumbnail max. better for drag and drop sort */
-/* feel free to change, if needed */
-.ust-previewimg {
-    display:block;
-    max-width:100% !important;
-    width:auto !important;
-    margin-left:auto;
-    margin-right:auto;
-}
-
-/* fix markup/css collisions */
+﻿/* fix markup/css collisions */
 .st-block__delete-label {
     display:block !important;
     padding:0.4em 0 !important;
+}
+
+.ust-centereditor {
+    margin-left:auto;
+    margin-right:auto;
 }
 
 
