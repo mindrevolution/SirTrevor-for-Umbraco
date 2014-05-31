@@ -13,6 +13,13 @@
 
 
 /* COLOR OVERRIDE */
+.st-block-control-ui-btn {
+    border-color: #f57020;
+    color: #f57020;
+}
+.st-block-control-ui-btn:hover {
+    background: #f57020;
+}
 .st-block__inner ::-moz-selection {
     background: #f57020;
 }
