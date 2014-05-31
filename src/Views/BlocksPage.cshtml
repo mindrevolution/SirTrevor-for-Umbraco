@@ -20,8 +20,14 @@
         switch((string)block.type)
         {
             case "umbraco_image":
-                var image = Umbraco.Media(block.data.id);
-                <img src="@image.url" alt="@image.name" style="max-width:50%;" />
+                var image = Umbraco.Media((int)block.data.id);
+                <img src="@image.Url" alt="@image.name" style="max-width:50%;" />
+                break;
+                
+            case "heading":
+                string heading = block.data.text;
+                string tag = (block.data.type==null) ? "h1" : block.data.type;
+                @SirTrevor.Markdown(heading).ToString().Replace("p", tag)
                 break;
                 
             case "text":
