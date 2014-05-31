@@ -29,6 +29,17 @@
 						view: "boolean"
 					},
 					{
+						label: "Editor width",
+						description: "The width the Sir Trevor editor will expand to, most likely 100%.",
+						key: "editorWidth",
+						view: "requiredfield",
+						validation: [
+							{
+								type: "Required" 
+							}                        
+						]
+					},
+					{
 						label: "Maximum editor width",
 						description: "The maximum width the Sir Trevor editor will expand to, i.e. 500px or 80%.",
 						key: "editorMaxWidth",
