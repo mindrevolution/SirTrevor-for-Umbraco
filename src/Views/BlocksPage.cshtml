@@ -6,37 +6,71 @@
 <html>
     <head>
         <title>Sir Trevor for Umbraco</title>
+        <style type="text/css">
+            body {
+                font-family:'Segoe UI', 'Arial Narrow', 'Nimbus Sans L', sans-serif;
+                margin:50px;
+            }
+
+            h1,h2,h3,h4,h5,h6{
+                font-weight:normal;
+            }
+
+            .stdemo-block {
+                border: 2px solid #f57020;
+                border-left-width: 25px;
+                margin: 25px 0;
+                padding: 25px;
+            }
+
+            .stdemo-datasection {
+                border-bottom: 2px solid #f57020;
+                margin-bottom: 25px;
+            }
+        </style>
     </head>
     <body>
-        <h1>Sir Trevor Sample Template</h1>
-        <h3>You can also use partials for the blocks</h3>
+        <div style="margin-top:100px;margin-bottom:50px;padding-bottom:25px;border-bottom:2px solid silver;text-align:right;">
+            <a href="https://github.com/mindrevolution/SirTrevor-for-Umbraco" target="_blank"><img src="/App_Plugins/SirTrevor/GettingStarted.res/logo-mr-handmade.png" alt="mindrevolution" /></a>
+        </div>
+
+        <img alt="" src="data:image/gif;base64,R0lGODlhxgDHAHMAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQICgAAACwAAAAAxgDHAIP1chz40rn3pXH+/v4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE/3DISau9OOvNu/9gKI5kaZ5XEAgs4L5w7LKCit54ru/WKsjAoPDFCvCOyKTON2w6hzWjckqtTlbPrFZYs3q/Jux2TJZFweh071duu4lStbwqftvf3bl+yb777wJ7giV1f4Z2eYOKGgGHjoaJi5IDjY+Wf5GTepWXnX6ZmmCFnqR4caFefaWrdqeoSpyssqavSaOzuGWBtTuqub+6rrwkt8DGW7vDxMfMbqDKHL7N01rC0Bix1NpaydfY2+Bjz97S4eZD1tDl5+xA6bzr7fIw3crz9031r9n4/fTD/PwJBKBPUsCBAgsOOogwoSaGDR1KikgxhkI1FTMSGRRPo8Q5Hf89CnxXJaTIkWognhw4DtbKlReTvHwZk4fJmQNJLsE5U+cNlTwb1rxxMyhLJUWN5kQCVKlQJEmdfszRVGpDnyGs8hwKIqpWlD+/bsXhVSxBFWjZcd1Q1SwMV21zYdVQVqy1uLPWfnNbLQNeWXMv8O3LyJzeCn+/nuK02FxgCnWtNn5LITGpwxIsS50cg7O2xwMiO/XcuTK4w5qVkpax+thh0UZbszb9+cNgKBWKyv61NrXRerppT8MKWynwLLtxcb0NxNfxJ8lnRWNeOttzJ9FZ6aROObPF3MiFG4vpGybi75DDT5hGlzvBFOgnFKUwPENxkRetg3dCv9lF7t3YIN7/e+nhth578DEX4AykXWdGBdRYc19G9ZR2RXwSlOOga4LdtiEADe63UYHT6FNeRR+6ECKJKR7Tw2AtqjjgcTEa48qET5EoxIpXiLhNhW7V2J13/2CA4yNAiiWkhUSO6GM4A0q15GwXFimfPHEc2c+U7sx4JZZfWsVlECFq2UkyX42544z4oCnmk25kZ9iBTqmJXZT3NPkbnIich9KJ89gJHZ7zGGHmnDr+Iadjoe2ZqB+LMnroj3y2QmibjeIk6J1VRhTIWI/eEalaA2ha6RujkjrTpk2k2k6p5oVqaacawYrfqXFe2pCtGrGKjq673iorqsAG2yuubbiKD6+eIluG/7LLUugsGdBGS5Gva9I6E7NTZXpItf1wu+W0Y4Abbo5hGmIupghhS2axHgUyqSfudqltUPL6Uy+VehrnbaDkbrHun5gOm+u9qlFyz75MKmyXw+0wPCTEikkgj8QvDLyrxaQanCy8pmZ4DsYyIvymyOGQDCLIoFJMjcoaUxQHoJAETFi/bp1CqcfPsmyUzfQCPajJSgptCcw+O0q0LEgv/TCEzHRzaMweXTAvN073nHWaVjMzsyNUx5ugMUm3WvZoGDBz9rtbm2Wfi21zijOAfsE9N7Vro52B3S5rfTd3G1zNX9xs/01dTTSTkffKhJvlE9mNT5w4Th0IPsTaYa/awf/kWpydeU8eWB5E2Z/T9AHnTyRd+kuP/eLz6rF+ILoMLMMeuweoN4FC7jiB9u8qJ/CuuQjCAxGGe+qJMPsLhCD/BGaLO7+N7zxLf3Hw1suMwvLZOwK9kd3rS1X4/VD/NvnX74R+O+a3tz6iNr1/mi3yT49U/SVSwT3+zdHBv41WKN7/7GWF/f3veycwYP0QGDwFrq8lUxDg/9oXlgFegoJksSCSOKLBminCgchjYBJAeLhQkBBGrzihWURYwA4iQxkqlNI1Yqg0dbiQC96I3PowuAkaxouHeygG/yBIjg6y8CEWBOJDfLglJaKCiQDL4QiE6B4iSjFw3TviFakYJCdlbhGK4/HiFdO1wjHaAoyssKIZGygmMa7RL2j0nhvfyJYWnKQIdJQDF5uYR0HsMWJz7GMY4hgENQpSj4Q8yyGhwQT/GHKRSzQgHiHZRxXQwHtFCCQlDYIWGoTEk2jR5CZHScoKRAAAOw==" />
+
+        <h1>Sir Trevor for Umbraco</h1>
+        <h2>Sample Template - how to render the editor data to the frontend</h2>
+        <hr />
+        <h3>You can also use partials for the blocks for a more separated approach.</h3>
 	
 @{
-	foreach(dynamic block in CurrentPage.blocks.data)
-	{
-		<h3>@block.type</h3>
-		<textarea cols="120" rows="8">@block.data</textarea><br />
-    
-        switch((string)block.type)
-        {
-            case "umbraco_image":
-                var image = Umbraco.Media((int)block.data.id);
-                <img src="@image.Url" alt="@image.name" style="max-width:50%;" />
-                break;
-                
-            case "heading":
-                string heading = block.data.text;
-                string tag = (block.data.type==null) ? "h1" : block.data.type;
-                @SirTrevor.Markdown(heading).ToString().Replace("p", tag)
-                break;
-                
-            case "text":
-                string text = block.data.text;
-                @SirTrevor.Markdown(text)
-                break;
-        }
-		
-	}
+    foreach (dynamic block in CurrentPage.blocks.data)
+    {
+        <div class="stdemo-block">
+            <div class="stdemo-datasection">
+                <h3>@block.type</h3>
+                <pre cols="120" rows="8">@block.data</pre>
+            </div>
+
+            @switch((string)block.type)
+            {
+                case "umbraco_image":
+                    var image = Umbraco.Media((int)block.data.id);
+                    <img src="@image.Url" alt="@image.name" style="max-width:50%;" />
+                    break;
+
+                case "heading":
+                    string heading = block.data.text;
+                    string tag = (block.data.type==null) ? "h1" : block.data.type;
+                    string formattedHeading = SirTrevor.Markdown(heading).ToString().Replace("p", tag);
+                    @Html.Raw(formattedHeading)
+                    break;
+
+                case "text":
+                    string text = block.data.text;
+                    @SirTrevor.Markdown(text)
+                    break;
+            }
+        </div>
+    }
 }
     </body>
 </html>
