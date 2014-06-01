@@ -32,8 +32,10 @@ These steps are required for manual installation:
 - also copy over [/App_Code/SirTrevor.cshtml](https://github.com/mindrevolution/SirTrevor-for-Umbraco/blob/master/src/App_Code/SirTrevor.cshtml) and [/App_Code/SirTrevor/](https://github.com/mindrevolution/SirTrevor-for-Umbraco/tree/master/src/App_Code/SirTrevor)
 - *optionally* copy the [sample template/view](https://github.com/mindrevolution/SirTrevor-for-Umbraco/blob/master/src/Views/BlocksPage.cshtml) as well
 
-### Customize the image block size
-By default a size reduced thumbnail of the image is inserted into the editor. This makes drag and drop for the blocks much easier on many screens, especially wide, hi-res ones. You can remove this limit by tweaking [umbraco-backend.css](https://github.com/mindrevolution/SirTrevor-for-Umbraco/blob/master/App_Plugins/SirTrevor/umbraco-backend.css).
+### Customize the editor
+You can customize the editor's settings in the datatype properties in the developer section:
+ 
+![Datatype settings](README.md.res/datatype-settings.png)
 
 ### Extend Sir Trevor
 Full documentation for Sir Trevor can be found [here](http://madebymany.github.io/sir-trevor-js/docs.html).
