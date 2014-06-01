@@ -65,6 +65,8 @@
                     break;
 
                 case "text":
+                case "list":
+                case "ordered_list":
                     string text = block.data.text;
                     @SirTrevor.Markdown(text)
                     break;
