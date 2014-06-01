@@ -9,6 +9,38 @@
     margin-right:auto;
 }
 
+.ust-gallery {
+}
+
+.ust-gallery-preview {
+    display:inline-block;
+    overflow:hidden;
+
+    width:25% !important;
+    min-width:220px !important;
+    height:150px;
+    margin:5px;
+    
+    background-color: #f8f8f8;
+    background-size:cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+.ust-gallery-preview .st-block-ui-btn--delete {
+    background-color:transparent;
+    color:white;
+    opacity:.5;
+    border:0;
+    margin-top:45%;
+    margin-left:75%;
+}
+.ust-gallery-preview .st-block-ui-btn--delete:hover {
+    opacity:1;
+    background-color:transparent;
+}
+
+
 
 
 
