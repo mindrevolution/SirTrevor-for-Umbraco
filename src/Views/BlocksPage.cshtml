@@ -65,10 +65,23 @@
                     break;
 
                 case "text":
+                case "list":
+                case "ordered_list":
                     string text = block.data.text;
                     @SirTrevor.Markdown(text)
                     break;
-                    
+
+                case "quote":
+                    string quote = block.data.text;
+                    string cite = block.data.cite;
+                    <blockquote>
+                        <p>@quote</p>
+                        <footer>
+                            <cite>@cite</cite>
+                        </footer>
+                    </blockquote>
+                    break;
+
                 default:
                     <text>(no rendering template)</text>
                     break;
