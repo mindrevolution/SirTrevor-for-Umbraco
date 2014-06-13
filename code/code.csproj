@@ -190,6 +190,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExtensionMethods\HtmlHelperExtensionMethods.cs" />
     <Compile Include="Settings\Controllers\SettingsApiController.cs" />
     <Compile Include="DataValue\Blocks\Block.cs" />
     <Compile Include="DataValue\Blocks\ContentPickerBlock.cs" />
