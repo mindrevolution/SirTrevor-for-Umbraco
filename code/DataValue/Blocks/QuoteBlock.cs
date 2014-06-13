@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using SirTrevor.ExtensionMethods;
 
-namespace SirTrevor.Blocks {
+namespace SirTrevor.DataValue.Blocks {
     
     public class QuoteBlock : Block {
 

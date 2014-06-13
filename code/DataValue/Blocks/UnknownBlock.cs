@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 
-namespace SirTrevor.Blocks {
+namespace SirTrevor.DataValue.Blocks {
     
     public class UnknownBlock : Block {
 

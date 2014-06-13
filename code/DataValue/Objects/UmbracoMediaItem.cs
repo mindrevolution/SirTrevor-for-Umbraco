@@ -3,7 +3,7 @@ using SirTrevor.ExtensionMethods;
 using Umbraco.Core.Models;
 using Umbraco.Web;
 
-namespace SirTrevor.Objects {
+namespace SirTrevor.DataValue.Objects {
     
     public class UmbracoMediaItem {
         

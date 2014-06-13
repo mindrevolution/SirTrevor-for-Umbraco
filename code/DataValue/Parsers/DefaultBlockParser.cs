@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json.Linq;
-using SirTrevor.Blocks;
-using SirTrevor.Interfaces;
+using SirTrevor.DataValue.Blocks;
+using SirTrevor.DataValue.Interfaces;
 
-namespace SirTrevor.Parsers {
+namespace SirTrevor.DataValue.Parsers {
     
     public class DefaultBlockParser : IBlockParser {
 

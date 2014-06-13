@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using SirTrevor.Blocks;
-using SirTrevor.Interfaces;
-using SirTrevor.Parsers;
+using SirTrevor.DataValue.Blocks;
+using SirTrevor.DataValue.Interfaces;
+using SirTrevor.DataValue.Parsers;
 
-namespace SirTrevor {
+namespace SirTrevor.DataValue {
 
     public class SirTrevorParserContext {
 

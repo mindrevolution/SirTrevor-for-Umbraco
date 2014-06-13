@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 
-namespace SirTrevor.Interfaces {
+namespace SirTrevor.DataValue.Interfaces {
 
     public interface IBlock {
 

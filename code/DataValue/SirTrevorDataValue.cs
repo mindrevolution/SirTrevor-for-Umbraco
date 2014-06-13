@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
-using SirTrevor.Interfaces;
+using SirTrevor.DataValue.Interfaces;
 
-namespace SirTrevor {
+namespace SirTrevor.DataValue {
     
     public class SirTrevorDataValue {
 

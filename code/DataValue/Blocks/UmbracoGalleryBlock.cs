@@ -1,10 +1,10 @@
 ﻿using System.Linq;
 using Newtonsoft.Json.Linq;
-using SirTrevor.Objects;
+using SirTrevor.DataValue.Objects;
 using Umbraco.Core;
 using Umbraco.Core.Models;
 
-namespace SirTrevor.Blocks {
+namespace SirTrevor.DataValue.Blocks {
     
     public class UmbracoGalleryBlock : Block {
 

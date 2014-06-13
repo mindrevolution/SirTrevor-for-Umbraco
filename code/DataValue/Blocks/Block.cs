@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
-using SirTrevor.Interfaces;
+using SirTrevor.DataValue.Interfaces;
 
-namespace SirTrevor.Blocks {
+namespace SirTrevor.DataValue.Blocks {
     
     public class Block : IBlock {
 

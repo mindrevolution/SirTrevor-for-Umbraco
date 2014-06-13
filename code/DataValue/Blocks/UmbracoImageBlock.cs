@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json.Linq;
-using SirTrevor.Objects;
+using SirTrevor.DataValue.Objects;
 using Umbraco.Core.Models;
 
-namespace SirTrevor.Blocks {
+namespace SirTrevor.DataValue.Blocks {
     
     public class UmbracoImageBlock : Block {
 

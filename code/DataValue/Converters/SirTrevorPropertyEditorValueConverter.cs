@@ -1,7 +1,7 @@
 ﻿using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Core.PropertyEditors;
 
-namespace SirTrevor.Converters {
+namespace SirTrevor.DataValue.Converters {
 
     public class SirTrevorPropertyEditorValueConverter : PropertyValueConverterBase {
 
