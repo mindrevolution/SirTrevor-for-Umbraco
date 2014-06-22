@@ -6,7 +6,7 @@ SirTrevor.Blocks.UmbracoImage = (function () {
 
     // - umbraco ng references
     var ngi = angular.element("body").injector();
-    var uImageHelper = ngi.get("imageHelper");
+    var uMediaHelper = ngi.get("mediaHelper");
     var uDialogService = ngi.get("dialogService");
     var uMediaResource = ngi.get("mediaResource");
 
@@ -57,7 +57,7 @@ SirTrevor.Blocks.UmbracoImage = (function () {
             //- fetch media (request intensive, but works for now)
             uMediaResource.getById(mediaid)
             .then(function (media) {
-                var thumburl = uImageHelper.getThumbnailFromPath(uImageHelper.getImagePropertyValue({ imageModel: media }));
+                var thumburl = uMediaHelper.resolveFile(media, true);
 
                 scope.$editor.html($("<img>", { src: thumburl, class: "ust-previewimg" }));
             });

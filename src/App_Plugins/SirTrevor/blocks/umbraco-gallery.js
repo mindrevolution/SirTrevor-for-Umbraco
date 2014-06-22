@@ -6,7 +6,7 @@ SirTrevor.Blocks.UmbracoGallery = (function () {
 
     // - umbraco ng references
     var ngi = angular.element("body").injector();
-    var uImageHelper = ngi.get("imageHelper");
+    var uMediaHelper = ngi.get("mediaHelper");
     var uDialogService = ngi.get("dialogService");
     var uMediaResource = ngi.get("mediaResource");
 
@@ -99,7 +99,7 @@ SirTrevor.Blocks.UmbracoGallery = (function () {
             uMediaResource.getById(mediaid)
             .then(function (media) {
                 var mel = scope.$editor.find(".ust-gallery-preview[data-mediaid='" + mediaid + "']");
-                var thumburl = uImageHelper.getThumbnailFromPath(uImageHelper.getImagePropertyValue({ imageModel: media }));
+                var thumburl = uMediaHelper.resolveFile(media, true);
                 //style: "background-image:url(" + thumburl + ");"
                 // - set image as background
                 $(mel).css("background-image", "url(" + thumburl + ")");
