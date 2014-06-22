@@ -70,7 +70,8 @@ namespace SirTrevor.Examine
             }
             catch (Exception ex)
             {
-                // - nothing for now ...
+                // - just log it for now
+                Umbraco.Core.Logging.LogHelper.Error(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType, ex.Message, ex);
             }
         }
     }
