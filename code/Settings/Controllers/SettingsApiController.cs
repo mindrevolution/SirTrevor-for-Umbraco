@@ -30,6 +30,7 @@ namespace SirTrevor.Settings.Controllers
             bt = new Blocktype("List", null); blocktypes.Add(bt);
             bt = new Blocktype("Quote", null); blocktypes.Add(bt);
             bt = new Blocktype("Video", null); blocktypes.Add(bt);
+            bt = new Blocktype("Tweet", null); blocktypes.Add(bt);
 
             string[] jsfiles = System.IO.Directory.GetFiles(System.Web.HttpContext.Current.Server.MapPath(blocksroot), "*.js", System.IO.SearchOption.TopDirectoryOnly);
             foreach (string filename in jsfiles)

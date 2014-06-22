@@ -87,6 +87,21 @@
                 </footer>
             </blockquote>
             break;
+                
+                @*case "soundcloud": {
+                    SoundCloudBlock sc = (SoundCloudBlock) block;
+                    string encodedUrl = HttpUtility.UrlEncode(sc.Url); //  "https%3A//api.soundcloud.com/tracks/143247536";
+                    <tr>
+                        <td>
+                            <div class="block-type" title="@block.GetType()">@block.GetType().Name (@block.Type)</div>
+                            <div class="block-value">URL: @sc.Url</div>
+                        </td>
+                        <td>
+                            <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=@encodedUrl&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_artwork=true&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+                        </td>
+                    </tr>
+                    break;
+                }*@
                     
         default: {
             // We don't generate any output if the block is unknown

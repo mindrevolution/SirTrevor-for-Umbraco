@@ -44,13 +44,22 @@ angular.module("umbraco").controller("SirTrevor.Controller", ['$scope', 'dialogS
                 editor.onFormSubmit();
                 $scope.model.value = editor.dataStore;
             });
-        }
+        };
 
         assetsService.load(assets, $scope)
         .then(function () {
 
             setTimeout(function () {
+
                 $scope.createEditor($scope);
+                
+                // This will be set globally for all editors
+                SirTrevor.setBlockOptions("Tweet", {
+                    fetchUrl: function (tweetId) {
+                        return "/umbraco/backoffice/SirTrevor/Twitter/GetTweet?id=" + tweetId;
+                    }
+                });
+
             }, 0);
 	});
 

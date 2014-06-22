@@ -12,7 +12,9 @@ using Newtonsoft.Json;
 
 namespace SirTrevor.Examine
 {
-    class IndexHelper : ApplicationEventHandler
+
+    // Renamed from "IndexHelper" to "ExamineIndexHelper" so it won't conflict the old file in App_Code
+    class ExamineIndexHelper : ApplicationEventHandler
     {
         string propertyEditorKey = "Sir.Trevor";
 
