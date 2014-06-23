@@ -195,7 +195,7 @@
   <ItemGroup>
     <Compile Include="Controllers\TwitterController.cs" />
     <Compile Include="ExtensionMethods\HtmlHelperExtensionMethods.cs" />
-    <Compile Include="Settings\Controllers\SettingsApiController.cs" />
+    <Compile Include="Controllers\SettingsApiController.cs" />
     <Compile Include="DataValue\Blocks\Block.cs" />
     <Compile Include="DataValue\Blocks\ContentPickerBlock.cs" />
     <Compile Include="DataValue\Blocks\GistBlock.cs" />
@@ -224,7 +224,6 @@
     <Compile Include="WebApi\SkybrudJsonMediaTypeFormatter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

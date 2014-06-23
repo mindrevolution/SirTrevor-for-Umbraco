@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-
 using Umbraco.Web.WebApi;
 using Umbraco.Web.Editors;
-using Umbraco.Core.Persistence;
-using System.Net.Http;
 using System.Text.RegularExpressions;
 
-namespace SirTrevor.Settings.Controllers
+namespace SirTrevor.Controllers
 {
 
     [Umbraco.Web.Mvc.PluginController("SirTrevor"), IsBackOffice]
