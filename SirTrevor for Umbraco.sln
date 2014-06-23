@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SirTrevor for Umbraco", "http://localhost:14619", "{10FFE441-053C-44E3-91ED-60B5788B257B}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "src", "http://localhost:14619", "{10FFE441-053C-44E3-91ED-60B5788B257B}"
 	ProjectSection(WebsiteProperties) = preProject
 		UseIISExpress = "true"
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
@@ -22,13 +22,21 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SirTrevor for Umbraco", "ht
 		SlnRelativePath = "src\"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "code", "code\code.csproj", "{8D748FE2-6455-41AE-83D7-048716C1149F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{10FFE441-053C-44E3-91ED-60B5788B257B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{10FFE441-053C-44E3-91ED-60B5788B257B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10FFE441-053C-44E3-91ED-60B5788B257B}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D748FE2-6455-41AE-83D7-048716C1149F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D748FE2-6455-41AE-83D7-048716C1149F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D748FE2-6455-41AE-83D7-048716C1149F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D748FE2-6455-41AE-83D7-048716C1149F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
