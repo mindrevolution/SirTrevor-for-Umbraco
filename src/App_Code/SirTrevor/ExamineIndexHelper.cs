@@ -1,6 +1,6 @@
 ﻿namespace SirTrevor.Examine
 {
 
-    // Class mode to code project
+    // Class moved to code project
 
 }
