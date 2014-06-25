@@ -20,6 +20,7 @@ namespace SirTrevor.DataValue.Parsers {
                 case "ordered_list": return new OrderedListBlock(type, obj, data);
                 case "umbraco_image": return new UmbracoImageBlock(type, obj, data);
                 case "umbraco_gallery": return new UmbracoGalleryBlock(type, obj, data);
+                case "tweet": return new TweetBlock(type, obj, data);
                 default: return null;
             }
 

@@ -194,6 +194,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\TwitterController.cs" />
+    <Compile Include="DataValue\Blocks\TweetBlock.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataValue\Blocks\Tweet\TweetEntities.cs" />
+    <Compile Include="DataValue\Blocks\Tweet\TweetHashTag.cs" />
+    <Compile Include="DataValue\Blocks\Tweet\TweetUrl.cs" />
+    <Compile Include="DataValue\Blocks\Tweet\TweetUser.cs" />
+    <Compile Include="DataValue\Blocks\Tweet\TweetUserMention.cs" />
     <Compile Include="ExtensionMethods\HtmlHelperExtensionMethods.cs" />
     <Compile Include="Controllers\SettingsApiController.cs" />
     <Compile Include="DataValue\Blocks\Block.cs" />
@@ -227,6 +235,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
