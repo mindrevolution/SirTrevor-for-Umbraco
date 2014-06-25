@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using SirTrevor.DataValue.Interfaces;
 
 namespace SirTrevor.DataValue.Blocks {
@@ -8,6 +9,7 @@ namespace SirTrevor.DataValue.Blocks {
         /// <summary>
         /// Gets or sets the JObject behind this block.
         /// </summary>
+        [JsonIgnore]
         public JObject Json { get; private set; }
         
         /// <summary>
@@ -18,6 +20,7 @@ namespace SirTrevor.DataValue.Blocks {
         /// <summary>
         /// Gets a dynamic reference to the "data" object of the block.
         /// </summary>
+        [JsonIgnore]
         public dynamic data {
             get { return Json["data"]; }
         }
