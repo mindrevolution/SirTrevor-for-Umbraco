@@ -12,16 +12,11 @@ SirTrevor.Blocks.UmbracoGallery = (function () {
 
     var block;
 
-    function pickImagesHandler(ev) {
-        ev.preventDefault();
-        this.pickImages();
-    }
-
     return SirTrevor.Block.extend({
 
         type: "umbraco_gallery",
         title: function () { return "Gallery"; },
-        icon_name: "poll",
+        icon_name: "image",
 
         droppable: false,
         uploadable: false,
@@ -30,17 +25,28 @@ SirTrevor.Blocks.UmbracoGallery = (function () {
         controllable: true,
 
         controls: {
-            "add": pickImagesHandler
+            "add": function (ev) {
+                block = this; // - easy context
+                ev.preventDefault();
+                this.pickImages();
+            }
         },
 
         loadData: function (data) {
-            block = this; // - unify context
+            block = this; // - easy context
 
             this.$editor.empty(); // - get rid of existing gallery
-            this.$editor.append($("<div>", { class: "ust-gallery" }));
+            this.$editor.append($("<ol>", { class: "ust-gallery" })); // ui-sortable
 
             angular.forEach(data.items, function (item, index) {
                 block.addImage(item.id);
+            });
+
+            // - wire up delete button
+            $(this.$editor).find(".ust-gallery").on("click", ".st-block-ui-btn--delete", function () {
+                //console.log("delete gallery item", this, $(this).parent("li"));
+                $(this).parent("li").remove();
+                block.onMediaChanged();
             });
         },
 
@@ -56,10 +62,10 @@ SirTrevor.Blocks.UmbracoGallery = (function () {
         },
 
         pickImages: function () {
-            uDialogService.mediaPicker({ onlyImages: true, callback: this.onMediaSelected, multiPicker: true });
+            uDialogService.mediaPicker({ onlyImages: true, callback: this.onMediaChanged, multiPicker: true });
         },
 
-        onMediaSelected: function (e) {
+        onMediaChanged: function (e) {
             var items = [];
 
             angular.forEach(block.$editor.find(".ust-gallery .ust-gallery-preview"), function (galleryitem, index) {
@@ -69,19 +75,28 @@ SirTrevor.Blocks.UmbracoGallery = (function () {
                 items.push(item);
             });
 
-            angular.forEach(e, function (mediaitem, index) {
-                var item = {};
-                item.id = mediaitem.id;
-                item.contentTypeAlias = mediaitem.contentTypeAlias;
-                items.push(item);
-            });
+            // - only if additional/new media was selected, not i.e. deleted
+            if (e !== undefined) {
+                angular.forEach(e, function (mediaitem, index) {
+                    var item = {};
+                    item.id = mediaitem.id;
+                    item.contentTypeAlias = mediaitem.contentTypeAlias;
+                    items.push(item);
+                });
+            }
 
             // - save gallery items
             var gallery = {};
             gallery.itemcount = items.length;
             gallery.items = items;
-            block.setAndLoadData(gallery);
-            block.ready();
+
+            // - only go full cycle if items got added
+            if (e === undefined) {
+                block.setData(gallery);
+            } else {
+                block.setAndLoadData(gallery);
+                block.ready();
+            }
         },
 
         addImage: function (mediaid) {
@@ -89,9 +104,8 @@ SirTrevor.Blocks.UmbracoGallery = (function () {
             var scope = block;
 
             // - add placeholder for awaited image (css background)
-            var preview = $("<div>", { class: "ust-gallery-preview", "data-mediaid": mediaid });
-            //preview.append($("<a>", { class: "st-icon st-block-control-ui-btn st-block-control-ui-btn--delete", "style": "position:relative;" }));
-            preview.append('<a data-icon="bin" class="st-block-ui-btn st-block-ui-btn--delete st-icon">delete</a>');
+            var preview = $("<li>", { class: "ust-gallery-preview", "data-mediaid": mediaid });
+            preview.append($("<a>", { class: "st-icon st-block-ui-btn--delete", "data-icon": "bin" }));
 
             scope.$editor.find(".ust-gallery").append(preview);
 
@@ -106,8 +120,114 @@ SirTrevor.Blocks.UmbracoGallery = (function () {
                 // - add media item's doc type alias
                 $(mel).data("mediacontenttypealias", media.contentTypeAlias);
             });
+
+            $(scope.$editor.find(".ust-gallery")).sortable().bind('sortupdate', function () {
+                var items = [];
+
+                angular.forEach(block.$editor.find(".ust-gallery .ust-gallery-preview"), function (galleryitem, index) {
+                    var item = {};
+                    item.id = $(galleryitem).data("mediaid");
+                    item.contentTypeAlias = $(galleryitem).data("mediacontenttypealias");
+                    items.push(item);
+                });
+
+                // - save gallery items
+                var gallery = {};
+                gallery.itemcount = items.length;
+                gallery.items = items;
+                block.setData(gallery);
+                block.data = gallery;
+                block.ready();
+            });
         }
 
     });
 
 })();
+
+
+/*
+ * DEPENDENCY
+ */
+
+/*
+ * HTML5 Sortable jQuery Plugin
+ * http://farhadi.ir/projects/html5sortable
+ * 
+ * Copyright 2012, Ali Farhadi
+ * Released under the MIT license.
+ */
+(function ($) {
+    var dragging, placeholders = $();
+    $.fn.sortable = function (options) {
+        var method = String(options);
+        options = $.extend({
+            connectWith: false
+        }, options);
+        return this.each(function () {
+            if (/^enable|disable|destroy$/.test(method)) {
+                var items = $(this).children($(this).data('items')).attr('draggable', method == 'enable');
+                if (method == 'destroy') {
+                    items.add(this).removeData('connectWith items')
+                        .off('dragstart.h5s dragend.h5s selectstart.h5s dragover.h5s dragenter.h5s drop.h5s');
+                }
+                return;
+            }
+            var isHandle, index, items = $(this).children(options.items);
+            var placeholder = $('<' + (/^ul|ol$/i.test(this.tagName) ? 'li' : 'div') + ' class="sortable-placeholder">');
+            items.find(options.handle).mousedown(function () {
+                isHandle = true;
+            }).mouseup(function () {
+                isHandle = false;
+            });
+            $(this).data('items', options.items)
+            placeholders = placeholders.add(placeholder);
+            if (options.connectWith) {
+                $(options.connectWith).add(this).data('connectWith', options.connectWith);
+            }
+            items.attr('draggable', 'true').on('dragstart.h5s', function (e) {
+                if (options.handle && !isHandle) {
+                    return false;
+                }
+                isHandle = false;
+                var dt = e.originalEvent.dataTransfer;
+                dt.effectAllowed = 'move';
+                dt.setData('Text', 'dummy');
+                index = (dragging = $(this)).addClass('sortable-dragging').index();
+            }).on('dragend.h5s', function () {
+                dragging.removeClass('sortable-dragging').show();
+                placeholders.detach();
+                if (index != dragging.index()) {
+                    items.parent().trigger('sortupdate', { item: dragging });
+                }
+                dragging = null;
+            }).not('a[href], img').on('selectstart.h5s', function () {
+                this.dragDrop && this.dragDrop();
+                return false;
+            }).end().add([this, placeholder]).on('dragover.h5s dragenter.h5s drop.h5s', function (e) {
+                if (!items.is(dragging) && options.connectWith !== $(dragging).parent().data('connectWith')) {
+                    return true;
+                }
+                if (e.type == 'drop') {
+                    e.stopPropagation();
+                    placeholders.filter(':visible').after(dragging);
+                    return false;
+                }
+                e.preventDefault();
+                e.originalEvent.dataTransfer.dropEffect = 'move';
+                if (items.is(this)) {
+                    if (options.forcePlaceholderSize) {
+                        placeholder.height(dragging.outerHeight());
+                    }
+                    dragging.hide();
+                    $(this)[placeholder.index() < $(this).index() ? 'after' : 'before'](placeholder);
+                    placeholders.not(placeholder).detach();
+                } else if (!placeholders.is(this) && !$(this).children(options.items).length) {
+                    placeholders.detach();
+                    $(this).append(placeholder);
+                }
+                return false;
+            });
+        });
+    };
+})(jQuery);
