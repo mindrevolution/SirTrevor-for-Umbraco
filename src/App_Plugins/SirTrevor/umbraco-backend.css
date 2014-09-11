@@ -40,6 +40,10 @@
     background-color:transparent;
 }
 
+.st-text-block a {
+	text-decoration:underline !important;
+}
+
 
 
 
