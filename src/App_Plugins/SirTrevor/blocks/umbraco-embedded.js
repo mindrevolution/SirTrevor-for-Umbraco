@@ -20,7 +20,7 @@ SirTrevor.Blocks.UmbracoEmbedded = (function () {
 
         loadData: function (data) {
             this.$editor.html(data.markup);
-        },
+        },  
 
         onBlockRender: function () {
             // - block has no img src value, must be a new one, so oben the media library ...

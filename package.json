@@ -1,0 +1,13 @@
+{
+    name: "SirTrevor-for-Umbraco",
+    version: "0.0.0",
+    dependencies: {
+        grunt: "~0.4.2",
+        grunt-contrib-copy: "~0.5.0",
+        grunt-umbraco-package: "0.0.5"
+    },
+    repository: {
+        type: "git",
+        url: "https://github.com/mindrevolution/SirTrevor-for-Umbraco.git"
+    }
+}
